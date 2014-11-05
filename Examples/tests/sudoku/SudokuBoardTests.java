@@ -1,7 +1,6 @@
 package sudoku;
 
 import static org.junit.Assert.*;
-
 import org.junit.Test;
 
 public class SudokuBoardTests {
@@ -42,7 +41,5 @@ public class SudokuBoardTests {
 		}
 		catch (IllegalArgumentException e) { }
 	}
-	
-	//Testing upload of this comment.
 	
 }

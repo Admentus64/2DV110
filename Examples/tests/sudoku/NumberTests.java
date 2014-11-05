@@ -33,6 +33,4 @@ public class NumberTests {
 		catch (IllegalArgumentException e) { }
 	}
 	
-	//Testing upload of this comment.
-	
 }
