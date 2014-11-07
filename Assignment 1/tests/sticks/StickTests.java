@@ -12,7 +12,7 @@ public class StickTests {
 	@Test
 	public void shouldInitUsedAsFalse() {
 		Stick stick = new Stick();
-		assertTrue(stick.isUsed());
+		assertTrue(!stick.isUsed());
 	}
 
 }
