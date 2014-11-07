@@ -8,5 +8,11 @@ public class StickTests {
 	public void shouldCreateInstance() {
 		new Stick();
 	}
+	
+	@Test
+	public void shouldInitUsedAsFalse() {
+		Stick stick = new Stick();
+		assertTrue(stick.isUsed());
+	}
 
 }
