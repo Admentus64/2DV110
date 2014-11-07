@@ -14,7 +14,7 @@ public class StickListTests {
 		StickList list = new StickList();
 		for (int i=0; i<30; i++) {
 			Stick stick = new Stick();
-			list.add(stick;)
+			list.add(stick);
 		}
 	}
 	
