@@ -18,6 +18,7 @@ public class StickTests {
 	@Test
 	public void shouldPresentUsed() {
 		Stick stick = new Stick();
+		stick.setUsed();
 		assertEquals(stick.toString(), "-");
 	}
 
