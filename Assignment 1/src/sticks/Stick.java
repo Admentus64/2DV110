@@ -8,7 +8,7 @@ public class Stick {
 		used = false;
 	}
 	
-	public boolean isUsed()				{ return true; }
+	public boolean isUsed()				{ return used; }
 	public void setUsed()				{ used = true; }
 	
 }
