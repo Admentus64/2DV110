@@ -6,7 +6,7 @@ public class StickList {
 	private ArrayList<Stick> sticks;
 	
 	public StickList() {
-		sticks = new ArrayList<>();
+		sticks = new ArrayList<Stick>();
 	}
 	
 	public int activeSticks() {

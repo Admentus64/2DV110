@@ -23,7 +23,11 @@ public class Game {
 	
 	public boolean play() {
 		
-		removeSticks(askDrawHuman());
+		int input = askDrawHuman();
+		if (input == 0)
+			return false;
+			
+		removeSticks(input);
 		if (checkLose("human")) {
 			drawSticks();
 			return false;
@@ -52,18 +56,18 @@ public class Game {
 	
 	private int askDrawHuman() {
 		
-		int output = 0;
-		while (!isValidInputRange(output, 1, 3)) {
-			System.out.print("How many sticks do you want to draw? Choose 1, 2 or 3: ");
-			output = scan.nextInt();
-			if (!isValidInputRange(output, 1, 3))
+		int input = -1;
+		while (!isValidInputRange(input, 0, 3)) {
+			System.out.print("(Enter 0 to quit) How many sticks do you want to draw? Choose 1, 2 or 3: ");
+			input = scan.nextInt();
+			if (!isValidInputRange(input, 0, 3))
 				System.out.println("Invalid input, please try again.");
-			if (validSticksRemaining(output)) {
-				output = 0;
+			if (validSticksRemaining(input)) {
+				input = 0;
 				System.out.println("Can not remove that many sticks, please try again.");
 			}
 		}
-		return output;
+		return input;
 		
 	}
 	
