@@ -11,15 +11,33 @@ public class StickTests {
 	
 	@Test
 	public void shouldBeUnused() {
-		Stick stick = new Stick();
+		Stick stick = createStick(false);
 		assertTrue(!stick.isUsed());
 	}
 	
 	@Test
-	public void shouldPresentUsed() {
-		Stick stick = new Stick();
-		stick.setUsed();
+	public void shouldPrintSticks() {
+		shouldPrintUsedStick();
+		shouldPrintUnusedStick();
+	}
+	
+	
+	
+	private void shouldPrintUsedStick() {
+		Stick stick = createStick(true);
 		assertEquals(stick.toString(), "-");
+	}
+	
+	private void shouldPrintUnusedStick() {
+		Stick stick = createStick(true);
+		assertEquals(stick.toString(), "-");
+	}
+	
+	private Stick createStick(boolean used) {
+		Stick stick = new Stick();
+		if (used)
+			stick.setUsed();
+		return stick;
 	}
 
 }
