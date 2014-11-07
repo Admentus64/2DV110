@@ -13,7 +13,9 @@ public class Stick {
 	
 	@Override
 	public String toString() {
-		return null;
+		if (used)
+			return "-";
+		else return "I";
 	}
 	
 }
