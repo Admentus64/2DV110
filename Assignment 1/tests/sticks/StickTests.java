@@ -10,9 +10,15 @@ public class StickTests {
 	}
 	
 	@Test
-	public void shouldInitUsedAsFalse() {
+	public void shouldBeUnused() {
 		Stick stick = new Stick();
 		assertTrue(!stick.isUsed());
+	}
+	
+	@Test
+	public void shouldPresentUsed() {
+		Stick stick = new Stick();
+		assertEquals(stick.toString(), "-");
 	}
 
 }

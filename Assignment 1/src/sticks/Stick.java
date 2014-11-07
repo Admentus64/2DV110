@@ -11,4 +11,9 @@ public class Stick {
 	public boolean isUsed()				{ return used; }
 	public void setUsed()				{ used = true; }
 	
+	@Override
+	public String toString() {
+		return null;
+	}
+	
 }
