@@ -11,11 +11,18 @@ public class StickListTests {
 	
 	@Test
 	public void shouldCreateFilledInstance() {
+		createStickList(30);
+	}
+	
+	
+	
+	private StickList createStickList(int size) {
 		StickList list = new StickList();
-		for (int i=0; i<30; i++) {
+		for (int i=0; i<size; i++) {
 			Stick stick = new Stick();
 			list.add(stick);
 		}
+		return list;
 	}
 	
 }
