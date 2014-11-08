@@ -30,6 +30,21 @@ public class StickListTests {
 		catch(Exception e)	{ fail("Failed test"); }
 	}
 	
+	@Test
+	public void shouldHaveCorrectSizeAfterRemove() {
+		final int size = 30;
+		final int remove = 3;
+		final int newSize = size - remove;
+		
+		StickList list = createStickList(size);
+		list.remove(0);			//29 sticks left
+		list.remove(0);			//28 sticks left
+		list.remove(30);		//Not valid
+		list.remove(25);		//27 sticks left
+		if (list.size() != 27)
+			fail("Failed test");
+	}
+	
 	
 	
 	private StickList createStickList(int size) {
