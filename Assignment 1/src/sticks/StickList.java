@@ -13,4 +13,8 @@ public class StickList {
 		sticks.add(stick);
 	}
 	
+	public void remove(int i) {
+		sticks.remove(i);
+	}
+	
 }
