@@ -18,4 +18,6 @@ public class StickList {
 			sticks.remove(i);
 	}
 	
+	public int size()		{ return sticks.size(); }
+	
 }
