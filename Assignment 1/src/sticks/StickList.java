@@ -14,7 +14,8 @@ public class StickList {
 	}
 	
 	public void remove(int i) {
-		sticks.remove(i);
+		if (i>=0 && i<=sticks.size())
+			sticks.remove(i);
 	}
 	
 }
