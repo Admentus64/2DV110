@@ -1,6 +1,9 @@
 package sticks;
 import java.util.ArrayList;
 
+/*
+ * Include with Code Coverage.
+ */
 public class StickList {
 	
 	private ArrayList<Stick> sticks;

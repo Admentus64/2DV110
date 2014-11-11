@@ -1,4 +1,5 @@
 package sticks;
+import sticks.Stick;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
@@ -21,6 +22,12 @@ public class StickTests {
 		shouldPrintUnusedStick();
 	}
 	
+	@Test
+	public void shouldUseStick() {
+		Stick stick = createStick(false);
+		stick.setUsed();
+		assertTrue(stick.isUsed());
+	}
 	
 	
 	private void shouldPrintUsedStick() {
@@ -39,5 +46,5 @@ public class StickTests {
 			stick.setUsed();
 		return stick;
 	}
-
+	
 }

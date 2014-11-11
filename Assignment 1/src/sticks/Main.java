@@ -4,6 +4,7 @@ import sticks.StickList;
 
 /*
  * This class is excluded from testing.
+ * Exclude from Code Coverage.
  */
 public class Main {
 	
