@@ -27,6 +27,15 @@ public class StickList {
 		return sticks.get(i);
 	}
 	
+	public void use() {
+		use(1);
+	}
+	
+	public void use(int j) {
+		for (int i=0; i<j; i++)
+			sticks.get(size()-used()).setUsed();
+	}
+	
 	@Override
 	public String toString() {
 		String output = "";
@@ -36,5 +45,13 @@ public class StickList {
 	}
 	
 	public int size()		{ return sticks.size(); }
+	
+	public int used() {
+		int count = 0;
+		for (Stick stick : sticks)
+			if (stick.isUsed())
+				count++;
+		return count;
+	}
 	
 }
