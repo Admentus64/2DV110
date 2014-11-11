@@ -3,13 +3,13 @@ package sticks;
 public class Game {
 	
 	private StickList list;
-	private Player user;
-	private Player pc;
+	private Player player;
+	private AI ai;
 	
-	public Game(StickList list, Player user, Player pc) {
+	public Game(StickList list, Player player, AI ai) {
 		this.list = list;
-		this.user = user;
-		this.pc = pc;
+		this.player = player;
+		this.ai = ai;
 	}
 	
 }
