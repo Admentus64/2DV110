@@ -1,5 +1,6 @@
 package sticks;
 import static org.junit.Assert.*;
+
 import org.junit.Test;
 
 public class StickListTests {
@@ -32,9 +33,7 @@ public class StickListTests {
 	
 	@Test
 	public void shouldHaveCorrectSizeAfterRemove() {
-		final int size = 30;
-		
-		StickList list = createStickList(size);
+		StickList list = createStickList(30);
 		list.remove(0);			//29 sticks left
 		list.remove(0);			//28 sticks left
 		list.remove(30);		//Not valid
@@ -51,6 +50,31 @@ public class StickListTests {
 			fail("Failed test");
 	}
 	
+	@Test
+	public void shouldGetStick() {
+		StickList list = createStickList(5);
+		Stick stick = new Stick();
+		list.add(stick);
+		assertEquals(list.get(list.size()), stick);
+	}
+	
+	@Test
+	public void shouldGetStickInvalid() {
+		StickList list = createStickList(5);
+		try						{ list.get(-1); }
+		catch(Exception e)		{ fail("Failed test"); }
+		try						{ list.get(6); }
+		catch(Exception e)		{ fail("Failed test"); }
+		
+	}
+	
+	@Test
+	public void shouldUseSticksAndPrintIt() {
+		StickList list = createStickList(8);
+		useSticks(list, 3);
+		assertEquals(list.toString(), "IIIII---");
+	}
+	
 	
 	
 	private StickList createStickList(int size) {
@@ -60,6 +84,12 @@ public class StickListTests {
 			list.add(stick);
 		}
 		return list;
+	}
+	
+	private void useSticks(StickList list, int use) {
+		if (use < list.size())
+			for (int i=0; i<use; i++)
+				list.get(i).setUsed();
 	}
 	
 }
