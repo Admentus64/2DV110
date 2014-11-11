@@ -39,15 +39,9 @@ public class StickListTests {
 		list.remove(30);		//Not valid
 		list.remove(25);		//27 sticks left
 		
-		int checks = 0;			//Perform 3 checks
-		if (list.size() == 27)	//Should be 27
-			checks++;
-		if (list.size() != 28)	//Should not be 28
-			checks++;
-		if (list.size() != 26)	//Should not be 26
-			checks++;
-		if (checks != 3)		//Fail is checks are not passed
-			fail("Failed test");
+		assertEquals(list.size(), 27);
+		assertNotEquals(list.size(), 26);
+		assertNotEquals(list.size(), 28);
 	}
 	
 	@Test
@@ -73,6 +67,18 @@ public class StickListTests {
 		StickList list = createStickList(8);
 		list.use(3);
 		assertEquals(list.toString(), "IIIII---");
+		assertNotEquals(list.toString(), "---IIIII");
+		assertNotEquals(list.toString(), "IIIIII--");
+		assertNotEquals(list.toString(), "IIII----");
+	}
+	
+	@Test
+	public void shouldShowCorrectUsedSticks() {
+		StickList list = createStickList(8);
+		list.use(3);
+		assertEquals(list.used(), 3);
+		assertNotEquals(list.used(), 2);
+		assertNotEquals(list.used(), 4);
 	}
 	
 	
