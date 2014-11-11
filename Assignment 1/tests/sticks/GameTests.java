@@ -5,7 +5,13 @@ public class GameTests {
 	
 	@Test
 	public void shouldCreateInstance() {
+		initGame();
+	}
+	
+	@Test
+	public void shouldPlayGame() {
 		Game game = initGame();
+		game.play();
 	}
 	
 	

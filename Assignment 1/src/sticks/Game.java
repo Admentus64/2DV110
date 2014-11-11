@@ -12,4 +12,8 @@ public class Game {
 		this.ai = ai;
 	}
 	
+	public boolean play() {
+		return true;
+	}
+	
 }
