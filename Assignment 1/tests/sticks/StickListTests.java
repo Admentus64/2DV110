@@ -69,14 +69,18 @@ public class StickListTests {
 		catch(Exception e)		{ fail("Failed test"); }
 		try						{ list.use(6); }
 		catch(Exception e)		{ fail("Failed test"); }
+		try						{ list.use(0); }
+		catch(Exception e)		{ fail("Failed test"); }
 		
+		assertEquals(list.used(), 0);						//Still remained unused so far
 		list.use(3);										//Valid
-		try						{ list.use(3); }			//Invalid, 3 + 3 = 6, list only has 5
+		try						{ list.use(4); }			//Invalid, 3 + 4 = 7, list only has 5
 		catch(Exception e)		{ fail("Failed test"); }
 		
 		list = createStickList(5);
 		try						{ list.use(5); }			//Valid, may not catch exception
 		catch(Exception e)		{ fail("Failed test"); }
+		assertEquals(list.used(), 5);						//All sticks used without exception
 	}
 	
 	@Test

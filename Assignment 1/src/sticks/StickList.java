@@ -1,6 +1,8 @@
 package sticks;
 import java.util.ArrayList;
 
+import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
+
 /*
  * Include with Code Coverage.
  */
@@ -32,6 +34,8 @@ public class StickList {
 	}
 	
 	public void use(int number) {
+		if (number > unused() || number > size() || number < 1)
+			return;
 		for (int i=0; i<number; i++)
 			sticks.get(size()-used()-1).setUsed();
 	}
@@ -45,6 +49,7 @@ public class StickList {
 	}
 	
 	public int size()		{ return sticks.size(); }
+	public int unused()		{ return size() - used(); }
 	
 	public int used() {
 		int count = 0;
@@ -53,5 +58,7 @@ public class StickList {
 				count++;
 		return count;
 	}
+	
+	
 	
 }
