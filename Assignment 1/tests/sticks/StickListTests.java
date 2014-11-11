@@ -63,6 +63,23 @@ public class StickListTests {
 	}
 	
 	@Test
+	public void shouldUseStickInvalid() {
+		StickList list = createStickList(5);
+		try						{ list.use(-1); }
+		catch(Exception e)		{ fail("Failed test"); }
+		try						{ list.use(6); }
+		catch(Exception e)		{ fail("Failed test"); }
+		
+		list.use(3);										//Valid
+		try						{ list.use(3); }			//Invalid, 3 + 3 = 6, list only has 5
+		catch(Exception e)		{ fail("Failed test"); }
+		
+		list = createStickList(5);
+		try						{ list.use(5); }			//Valid, may not catch exception
+		catch(Exception e)		{ fail("Failed test"); }
+	}
+	
+	@Test
 	public void shouldUseSticksAndPrintIt() {
 		StickList list = createStickList(8);
 		list.use(3);
