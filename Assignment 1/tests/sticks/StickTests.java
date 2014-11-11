@@ -30,6 +30,7 @@ public class StickTests {
 	}
 	
 	
+	
 	private void shouldPrintUsedStick() {
 		Stick stick = createStick(true);
 		assertEquals(stick.toString(), "-");
