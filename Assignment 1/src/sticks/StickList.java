@@ -31,9 +31,9 @@ public class StickList {
 		use(1);
 	}
 	
-	public void use(int j) {
-		for (int i=0; i<j; i++)
-			sticks.get(size()-used()).setUsed();
+	public void use(int number) {
+		for (int i=0; i<number; i++)
+			sticks.get(size()-used()-1).setUsed();
 	}
 	
 	@Override

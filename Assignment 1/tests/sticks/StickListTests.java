@@ -55,7 +55,7 @@ public class StickListTests {
 		StickList list = createStickList(5);
 		Stick stick = new Stick();
 		list.add(stick);
-		assertEquals(list.get(list.size()), stick);
+		assertEquals(list.get(list.size()-1), stick);
 	}
 	
 	@Test
@@ -71,7 +71,7 @@ public class StickListTests {
 	@Test
 	public void shouldUseSticksAndPrintIt() {
 		StickList list = createStickList(8);
-		useSticks(list, 3);
+		list.use(3);
 		assertEquals(list.toString(), "IIIII---");
 	}
 	
@@ -84,12 +84,6 @@ public class StickListTests {
 			list.add(stick);
 		}
 		return list;
-	}
-	
-	private void useSticks(StickList list, int use) {
-		if (use < list.size())
-			for (int i=0; i<use; i++)
-				list.get(i).setUsed();
 	}
 	
 }
