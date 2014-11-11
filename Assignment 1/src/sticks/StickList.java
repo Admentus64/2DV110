@@ -21,6 +21,20 @@ public class StickList {
 			sticks.remove(i);
 	}
 	
+	public Stick get(int i) {
+		if (i < 0 || i > sticks.size())
+			return null;
+		return sticks.get(i);
+	}
+	
+	@Override
+	public String toString() {
+		String output = "";
+		for (Stick stick : sticks)
+			output += stick.toString();
+		return output;
+	}
+	
 	public int size()		{ return sticks.size(); }
 	
 }
