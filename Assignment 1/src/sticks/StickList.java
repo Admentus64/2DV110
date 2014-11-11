@@ -1,8 +1,6 @@
 package sticks;
 import java.util.ArrayList;
 
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
-
 /*
  * Include with Code Coverage.
  */
