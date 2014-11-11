@@ -1,5 +1,4 @@
 package sticks;
-
 import org.junit.Test;
 
 public class GameTests {
