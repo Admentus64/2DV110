@@ -13,7 +13,38 @@ public class Game {
 	}
 	
 	public boolean play() {
+		int input = player.drawSticks(list.unused());
+		if (input == 0)
+			return false;
+		removeSticks(input);
+		if (checkEndOfGame())
+			return false;
+		removeSticks(ai.drawSticks(list.unused()));
+		if (checkEndOfGame())
+			return false;
+		printSticks();
 		return true;
+	}
+	
+	
+	
+	private void removeSticks(int number) {
+		for (int i=0; i<number; i++)
+			list.use();
+	}
+	
+	private boolean checkEndOfGame() {
+		if (list.unused() == 0) {
+			printSticks();
+			return true;
+		}
+		return false;
+	}
+	
+	private void printSticks() {
+		System.out.print("Sticks remaining: " + list.toString() + "   (" + list.unused() +")");
+		for (int i=0; i<2; i++)
+			System.out.println();
 	}
 	
 }
