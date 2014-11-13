@@ -11,7 +11,7 @@ public class GameTests {
 	@Test
 	public void shouldPlayGame() {
 		Game game = initGame();
-		game.play();
+		while (game.play());
 	}
 	
 	
