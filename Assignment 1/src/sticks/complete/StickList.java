@@ -38,6 +38,10 @@ public class StickList {
 		sticks.get(i).setInactive();
 	}
 	
+	public void setInactive() {
+		sticks.get(activeSticks()).setInactive();
+	}
+	
 	public Stick get(int i) { return sticks.get(i); }
 	
 	public int size() { return sticks.size(); }
