@@ -1,4 +1,5 @@
 package sticks;
+import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class GameTests {
@@ -11,7 +12,8 @@ public class GameTests {
 	@Test
 	public void shouldPlayGame() {
 		Game game = initGame();
-		while (game.play());
+		try					{ while (game.play()); }
+		catch(Exception e)	{ fail("Failed test"); }
 	}
 	
 	
