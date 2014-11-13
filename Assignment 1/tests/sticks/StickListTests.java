@@ -101,6 +101,17 @@ public class StickListTests {
 		assertNotEquals(list.used(), 4);
 	}
 	
+	@Test
+	public void shouldShowCorrectUnusedSticks() {
+		StickList list = createStickList(8);
+		list.use(3);
+		assertEquals(list.unused(), 5);
+		assertNotEquals(list.unused(), 4);
+		assertNotEquals(list.unused(), 6);
+		list = createStickList(8);
+		assertEquals(list.unused(), 8);
+	}
+	
 	
 	
 	private StickList createStickList(int size) {

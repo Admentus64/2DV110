@@ -13,6 +13,7 @@ public class AI extends Player {
 		random = new Random();
 	}
 	
+	//@Override
 	public int drawSticks(int max) {
 		if (max == 1 || max == 2) {
 			System.out.println("PC draws: 1");
