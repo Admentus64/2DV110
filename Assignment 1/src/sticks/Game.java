@@ -5,28 +5,44 @@ public class Game {
 	private StickList list;
 	private Player player;
 	private AI ai;
+	private boolean done;
 	
 	public Game(StickList list, Player player, AI ai) {
 		this.list = list;
 		this.player = player;
 		this.ai = ai;
+		done = false;
 	}
 	
-	public boolean play() {
-		int input = -1;
-		while (!isValidDraw(input, 0, 3))
-			input = player.drawSticks(list.unused());
-		if (input == 0)
-			return false;
-		removeSticks(input);
-		if (checkEndOfGame())
-			return false;
-		removeSticks(ai.drawSticks(list.unused()));
-		if (checkEndOfGame())
-			return false;
-		printSticks();
-		return true;
+	public void restart() {
+		if (done) {
+			done = false;
+			list.reset();
+		}
 	}
+	
+	public void play() {
+		if (done)
+			return;
+		int input = player.drawSticks(list.unused());
+		if (input == 0 || !isValidDraw(input, 1, 3))
+			return;
+		
+		removeSticks(input);
+		if (checkEndOfGame(true))
+			return;
+		
+		removeSticks(ai.drawSticks(list.unused()));
+		if (checkEndOfGame(false))
+			return;
+		
+		printSticks();
+	}
+	
+	public StickList getStickList()		{ return list; }
+	public Player getPlayer()			{ return player; }
+	public AI getAI()					{ return ai; }
+	public boolean isDone()				{ return done; }
 	
 	
 	
@@ -39,12 +55,15 @@ public class Game {
 			list.use();
 	}
 	
-	private boolean checkEndOfGame() {
-		if (list.unused() == 0) {
+	private boolean checkEndOfGame(boolean playerInput) {
+		if (list.unused() == 1) {
 			printSticks();
-			return true;
+			done = true;
+			if (!playerInput)
+				System.out.println("Player loses, AI wins!");
+			else System.out.println("Player wins, AI loses!");
 		}
-		return false;
+		return done;
 	}
 	
 	private void printSticks() {
