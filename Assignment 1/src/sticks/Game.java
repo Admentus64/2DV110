@@ -13,7 +13,9 @@ public class Game {
 	}
 	
 	public boolean play() {
-		int input = player.drawSticks(list.unused());
+		int input = -1;
+		while (!isValidDraw(input, 0, 3))
+			input = player.drawSticks(list.unused());
 		if (input == 0)
 			return false;
 		removeSticks(input);
@@ -27,6 +29,10 @@ public class Game {
 	}
 	
 	
+	
+	private boolean isValidDraw(int value, int min, int max) {
+		return value >= min && value <= max;
+	}
 	
 	private void removeSticks(int number) {
 		for (int i=0; i<number; i++)
