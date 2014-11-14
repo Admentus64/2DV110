@@ -25,8 +25,14 @@ public class Game {
 		if (done)
 			return;
 		int input = player.drawSticks(list.unused());
-		if (input == 0 || !isValidDraw(input, 1, 3))
+		if (!isValidDraw(input, 0, 3))
 			return;
+		if (input == 0) {
+			System.out.println("Player ended game before it was finished.");
+			done = true;
+			return;
+		}
+			
 		
 		removeSticks(input);
 		if (checkEndOfGame(true))
@@ -39,15 +45,13 @@ public class Game {
 		printSticks();
 	}
 	
-	public StickList getStickList()		{ return list; }
-	public Player getPlayer()			{ return player; }
-	public AI getAI()					{ return ai; }
-	public boolean isDone()				{ return done; }
-	
+	public StickList getStickList()			{ return list; }
+	public boolean isDone()					{ return done; }
+	public Player getPlayer()				{ return player; }
 	
 	
 	private boolean isValidDraw(int value, int min, int max) {
-		return value >= min && value <= max;
+		return (value >= min && value <= max && value < list.unused());
 	}
 	
 	private void removeSticks(int number) {

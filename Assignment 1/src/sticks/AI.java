@@ -2,7 +2,6 @@ package sticks;
 import java.util.Random;
 
 /*
- * TODO
  * Include with Code Coverage.
  */
 public class AI extends Player {
