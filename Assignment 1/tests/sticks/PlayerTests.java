@@ -1,13 +1,11 @@
 package sticks;
-import static org.junit.Assert.*;
-
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.contrib.java.lang.system.TextFromStandardInputStream.emptyStandardInputStream;
 import java.util.Random;
-
 import org.junit.Rule;
 import org.junit.Test;
-
-import static org.junit.contrib.java.lang.system.TextFromStandardInputStream.*;
-
 import org.junit.contrib.java.lang.system.TextFromStandardInputStream;
 
 public class PlayerTests {
@@ -19,7 +17,7 @@ public class PlayerTests {
 	public void shouldCreateInstance() {
 		new Player();
 	}
-
+	
 	@Test
 	public void shouldInputStaticNumberWithoutUser() {
 		Player player = new Player();
@@ -61,7 +59,7 @@ public class PlayerTests {
 	
 	private String randomNumberString(int value, int add) {
 		Random rand = new Random();
-		int i = rand.nextInt(value);
+		int i = rand.nextInt(value) + add;
 		System.out.println(i);
 		return Integer.toString(i);
 	}

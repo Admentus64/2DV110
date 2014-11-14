@@ -7,9 +7,8 @@ import java.util.Scanner;
  */
 public class Player {
 	
-	public Player() {
-	}
-	
+	private Scanner scan = new Scanner(System.in);
+
 	public int drawSticks(int max) {
 		int draw = -1;
 		if (max < 1)
@@ -22,7 +21,6 @@ public class Player {
 	}
     
     private int readInput() {
-    	Scanner scan = new Scanner(System.in);
     	try	{ return scan.nextInt(); }
     	catch(Exception e) {
     		System.err.println("Error with input, try again please.");

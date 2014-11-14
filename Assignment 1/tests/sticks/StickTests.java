@@ -25,7 +25,7 @@ public class StickTests {
 	@Test
 	public void shouldUseStick() {
 		Stick stick = createStick(false);
-		stick.setUsed();
+		stick.use();
 		assertTrue(stick.isUsed());
 	}
 	
@@ -44,7 +44,7 @@ public class StickTests {
 	private Stick createStick(boolean used) {
 		Stick stick = new Stick();
 		if (used)
-			stick.setUsed();
+			stick.use();
 		return stick;
 	}
 	

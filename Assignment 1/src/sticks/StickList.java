@@ -35,7 +35,12 @@ public class StickList {
 		if (number > unused() || number > size() || number < 1)
 			return;
 		for (int i=0; i<number; i++)
-			sticks.get(size()-used()-1).setUsed();
+			sticks.get(size()-used()-1).use();
+	}
+	
+	public void reset() {
+		for (Stick stick : sticks)
+			stick.unuse();
 	}
 	
 	@Override
