@@ -21,9 +21,8 @@ public class PlayerTests {
 	@Test
 	public void shouldInputStaticNumberWithoutUser() {
 		Player player = new Player();
-		int max = 5;					//Lets say the max value to draw is 5 so the player can draw freely between 1 and 3.
 		systemInMock.provideText("3");
-		int result = player.drawSticks(max);
+		int result = player.draw();
 		assertTrue(result >= 0 && result <= 3);
 		assertNotEquals(2, result);
 		assertNotEquals(4, result);
@@ -32,10 +31,9 @@ public class PlayerTests {
 	@Test
 	public void shouldInputRandomNumberWithoutUser() {
 		Player player = new Player();
-		int max = 5;					//Lets say the max value to draw is 5 so the player can draw freely between 1 and 3.
 		for (int i=0; i<100; i++) {
 			systemInMock.provideText(randomNumberString(4, 0));
-			int result = player.drawSticks(max);
+			int result = player.draw();
 			assertTrue(result >= 0 && result <= 3);
 		}
 	}
@@ -43,17 +41,17 @@ public class PlayerTests {
 	@Test
 	public void shouldInputWrongNumberWithoutUser() {
 		Player player = new Player();
-		int max = 2, check = -1;		
-		checkAssert("5", player, max, check);	//Must be between 0 and 3
-		checkAssert("3", player, max, check);	//To high value if max is 2
-		checkAssert("2", player, max, check);	//Still to high value if max is 2
+		int check = -1;		
+		checkAssert("5", player, check);	//Must be between 0 and 3
+		checkAssert("4", player, check);	//To high value if max is 2
+		checkAssert("-1", player, check);	//Still to high value if max is 2
 	}
 	
 	
 	
-	private void checkAssert(String provide, Player player, int max, int check) {
+	private void checkAssert(String provide, Player player, int check) {
 		systemInMock.provideText(provide);	
-		int result = player.drawSticks(max);
+		int result = player.draw();
 		assertEquals(result, check);
 	}
 	

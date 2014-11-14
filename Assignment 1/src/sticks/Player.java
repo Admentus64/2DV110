@@ -8,10 +8,10 @@ public class Player {
 	
 	private Scanner scan;
 
-	public int drawSticks(int max) {
+	public int draw() {
 		System.out.print("(Enter 0 to quit) How many sticks do you want to draw? Choose 1, 2 or 3: ");
 		int draw = readInput();
-		if (draw < 0 || draw > 3 || draw >= max)
+		if (draw < 0 || draw > 3)
 				return -1;
 		return draw;
 	}

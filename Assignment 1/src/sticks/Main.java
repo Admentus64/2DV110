@@ -17,7 +17,7 @@ public class Main {
 		testStickList();
 		runManual();
 		runAutomatically(100);
-		runAutomaticallyWithPreInput();
+		runAutomaticallyWithStaticInput();
 		
 	}
 	
@@ -32,12 +32,12 @@ public class Main {
 	
 	private static void runAutomatically(int runTimes) {
 		
-		//Run the program without need for input, for testing purposes. Does not run the program in sequence.
+		//Run the program without need for input, for testing purposes.
 		Game game = initGame(true);
 		for (int i=0; i<runTimes; i++) {
 			while (!game.isDone()) {
 				int answer = randomNumber(3, 1);
-				when(game.getPlayer().drawSticks(game.getStickList().unused())).thenReturn(answer);
+				when(game.getPlayer().draw()).thenReturn(answer);
 				System.out.println("Mock Player draws: " + answer);
 				game.play();
 			}
@@ -45,17 +45,17 @@ public class Main {
 		}
 	}
 	
-	private static void runAutomaticallyWithPreInput() {
+	private static void runAutomaticallyWithStaticInput() {
 		
-		//Run the program without need for input, for testing purposes. Does not run the program in sequence.
+		//Run the program without need for input, for testing purposes.
 		Game game = initGame(true);
-		when(game.getPlayer().drawSticks(game.getStickList().unused())).thenReturn(3);
+		when(game.getPlayer().draw()).thenReturn(3);
 		game.play();
-		when(game.getPlayer().drawSticks(game.getStickList().unused())).thenReturn(2);
+		when(game.getPlayer().draw()).thenReturn(2);
 		game.play();
-		when(game.getPlayer().drawSticks(game.getStickList().unused())).thenReturn(1);
+		when(game.getPlayer().draw()).thenReturn(1);
 		game.play();
-		when(game.getPlayer().drawSticks(game.getStickList().unused())).thenReturn(0);
+		when(game.getPlayer().draw()).thenReturn(0);
 		game.play();
 		game.play();			//One last run, which should not be running at all.
 		

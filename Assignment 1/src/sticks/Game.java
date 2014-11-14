@@ -24,7 +24,7 @@ public class Game {
 	public void play() {
 		if (done)
 			return;
-		int input = player.drawSticks(list.unused());
+		int input = player.draw();
 		if (!isValidDraw(input, 0, 3))
 			return;
 		if (input == 0) {
@@ -38,7 +38,7 @@ public class Game {
 		if (checkEndOfGame(true))
 			return;
 		
-		removeSticks(ai.drawSticks(list.unused()));
+		removeSticks(ai.runAI(list.unused()));
 		if (checkEndOfGame(false))
 			return;
 		

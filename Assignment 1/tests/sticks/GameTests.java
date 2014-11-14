@@ -15,7 +15,7 @@ public class GameTests {
 		Game game = initGame(true);
 		while (!game.isDone()) {
 			int answer = 1;
-			when(game.getPlayer().drawSticks(game.getStickList().unused())).thenReturn(answer);
+			when(game.getPlayer().draw()).thenReturn(answer);
 			System.out.println("Mock Player draws: " + answer);
 			game.play();
 		}
@@ -26,7 +26,7 @@ public class GameTests {
 		Game game = initGame(true);
 		while (!game.isDone()) {
 			int answer = randomNumber(3, 1);
-			when(game.getPlayer().drawSticks(game.getStickList().unused())).thenReturn(answer);
+			when(game.getPlayer().draw()).thenReturn(answer);
 			System.out.println("Mock Player draws: " + answer);
 			game.play();
 		}
