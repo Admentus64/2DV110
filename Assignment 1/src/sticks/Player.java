@@ -11,15 +11,14 @@ public class Player {
 	}
 	
 	public int drawSticks(int max) {
-		int number = -1;
-		while (number < 0) {
-			System.out.print("(Enter 0 to quit) How many sticks do you want to draw? Choose 1, 2 or 3: ");
-			number = readInput();
-			if (number >= 1 && number <= 3)
-				if (number > max)
-				number = -1;
-		}
-		return number;
+		int draw = -1;
+		if (max < 1)
+			max = 1;
+		System.out.print("(Enter 0 to quit) How many sticks do you want to draw? Choose 1, 2 or 3: ");
+		draw = readInput();
+		if (draw < 0 || draw > 3 || draw >= max)
+				return -1;
+		return draw;
 	}
     
     private int readInput() {
