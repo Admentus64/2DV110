@@ -8,5 +8,6 @@
 	<classpathentry kind="lib" path="D:/Programmering/LNU/JAR Extensions/Testing/jmockit.jar"/>
 	<classpathentry kind="lib" path="D:/Programmering/LNU/JAR Extensions/Testing/jmockit-coverage.jar"/>
 	<classpathentry kind="lib" path="D:/Programmering/LNU/JAR Extensions/Testing/mockito-all-1.9.5.jar"/>
+	<classpathentry kind="lib" path="D:/Programmering/LNU/JAR Extensions/JUnit/system-rules-1.7.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
