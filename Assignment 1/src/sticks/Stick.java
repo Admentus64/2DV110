@@ -5,11 +5,7 @@ package sticks;
  */
 public class Stick {
 	
-	private boolean used;
-	
-	public Stick() {
-		used = false;
-	}
+	private boolean used = false;
 	
 	public boolean isUsed()				{ return used; }
 	public void use()					{ used = true; }

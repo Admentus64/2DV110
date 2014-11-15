@@ -6,18 +6,14 @@ import java.util.ArrayList;
  */
 public class StickList {
 	
-	private ArrayList<Stick> sticks;
-	
-	public StickList() {
-		sticks = new ArrayList<Stick>();
-	}
+	private ArrayList<Stick> sticks = new ArrayList<Stick>();
 	
 	public void add(Stick stick) {
 		sticks.add(stick);
 	}
 	
 	public void remove(int i) {
-		if (i>=0 && i<=sticks.size())
+		if (i>=0 && i<sticks.size())
 			sticks.remove(i);
 	}
 	
@@ -27,12 +23,8 @@ public class StickList {
 		return sticks.get(i);
 	}
 	
-	public void use() {
-		use(1);
-	}
-	
 	public void use(int number) {
-		if (number > unused() || number > size() || number < 1)
+		if (number > unused() || number < 0)
 			return;
 		for (int i=0; i<number; i++)
 			sticks.get(size()-used()-1).use();

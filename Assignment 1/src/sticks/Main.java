@@ -15,6 +15,7 @@ public class Main {
 	public static void main(String[] args) {
 		
 		testStickList();
+		testAI();
 		runManual();
 		runAutomatically(100);
 		runAutomaticallyWithStaticInput();
@@ -25,8 +26,7 @@ public class Main {
 		
 		//Manual testing, requires input
 		Game game = initGame(false);
-		while (!game.isDone())
-			game.play();
+		do { game.play(); } while (!game.isDone());
 		
 	}
 	
@@ -34,13 +34,13 @@ public class Main {
 		
 		//Run the program without need for input, for testing purposes.
 		Game game = initGame(true);
-		for (int i=0; i<runTimes; i++) {
-			while (!game.isDone()) {
+		for (int i=0; i<runTimes; i++) {		//Will always run 100 times as set by the main method
+			do {
 				int answer = randomNumber(3, 1);
 				when(game.getPlayer().draw()).thenReturn(answer);
 				System.out.println("Mock Player draws: " + answer);
 				game.play();
-			}
+			} while (!game.isDone());
 			game.restart();
 		}
 	}
@@ -49,35 +49,60 @@ public class Main {
 		
 		//Run the program without need for input, for testing purposes.
 		Game game = initGame(true);
-		when(game.getPlayer().draw()).thenReturn(3);
-		game.play();
-		when(game.getPlayer().draw()).thenReturn(2);
-		game.play();
-		when(game.getPlayer().draw()).thenReturn(1);
-		game.play();
-		when(game.getPlayer().draw()).thenReturn(0);
-		game.play();
+		game.restart();			//Should not work now
+		for (int i=3; i>=0; i--)
+			runStaticInput(game, i);
 		game.play();			//One last run, which should not be running at all.
 		
+	}
+	
+	private static void runStaticInput(Game game, int answer) {
+		when(game.getPlayer().draw()).thenReturn(answer);
+		System.out.println("Mock Player draws: " + answer);
+		game.play();
 	}
 	
 	private static void testStickList() {
 		
 		StickList list = new StickList();
+		list.reset();
+		list.toString();
+		list.used();
 		list.add(new Stick());
-		list.add(new Stick());
-		list.add(new Stick());
-		Stick stick = list.get(0);
-		list.add(stick);
-		list.remove(0);
-		list.use(9);
-		list.get(9);
 		
+		list.reset();
+		list.toString();
+		list.used();
+		list.add(new Stick());
+		list.add(new Stick());
+		
+		list.use(0);
+		list.use(1);
+		list.use(2);
+		list.use(-1);
+		list.use(9);
+		list.get(0);
+		list.get(1);
+		list.get(2);
+		list.get(-1);
+		list.get(9);
+		list.remove(0);
+		list.remove(1);
+		list.remove(2);
+		list.remove(-1);
+		list.remove(9);
+		
+	}
+	
+	private static void testAI() {
+		AI ai = new AI();
+		ai.setMax(-1);
+		ai.setMax(2);
 	}
 	
 	private static Game initGame(boolean mock) {
 		StickList list = new StickList();
-		for (int i=0; i<30; i++)
+		for (int i=0; i<30; i++)			//Will always run 30 times
 			list.add(new Stick());
 		if (mock)
 			return new Game(list, mock(Player.class), new AI());

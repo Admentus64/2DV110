@@ -6,14 +6,17 @@ import java.util.Random;
  */
 public class AI extends Player {
 	
-	private Random random;
+	private Random random = new Random();
+	private int max = 1;
 	
-	public AI() {
-		random = new Random();
+	public void setMax(int i) {
+		if (i>0)
+			max = i;
 	}
 	
-	public int runAI(int max) {
-		if (max == 1 || max == 2) {
+	@Override
+	public int draw() {
+		if (max <= 2) {
 			System.out.println("PC draws: 1");
 			return 1;
 		}

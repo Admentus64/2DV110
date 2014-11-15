@@ -28,6 +28,8 @@ public class StickListTests {
 		catch(Exception e)	{ fail("Failed test"); }
 		try					{ list.remove(31); }
 		catch(Exception e)	{ fail("Failed test"); }
+		try					{ list.remove(30); }
+		catch(Exception e)	{ fail("Failed test"); }
 	}
 	
 	@Test
@@ -62,6 +64,21 @@ public class StickListTests {
 	}
 	
 	@Test
+	public void shouldUseStick() {
+		StickList list = createStickList(1);
+		list.use(1);
+		assertEquals(list.used(), 1);
+		list.use(1);
+		assertEquals(list.used(), 1);
+		
+		list = createStickList(0);
+		list.use(1);
+		assertEquals(list.used(), 0);
+		
+		use(list, 5);
+	}
+	
+	@Test
 	public void shouldUseStickInvalid() {
 		StickList list = createStickList(5);
 		try						{ list.use(-1); }
@@ -70,7 +87,6 @@ public class StickListTests {
 		catch(Exception e)		{ fail("Failed test"); }
 		try						{ list.use(0); }
 		catch(Exception e)		{ fail("Failed test"); }
-		
 		assertEquals(list.used(), 0);						//Still remained unused so far
 		list.use(3);										//Valid
 		try						{ list.use(4); }			//Invalid, 3 + 4 = 7, list only has 5
@@ -80,6 +96,7 @@ public class StickListTests {
 		try						{ list.use(5); }			//Valid, may not catch exception
 		catch(Exception e)		{ fail("Failed test"); }
 		assertEquals(list.used(), 5);						//All sticks used without exception
+		
 	}
 	
 	@Test
@@ -121,6 +138,14 @@ public class StickListTests {
 			list.add(stick);
 		}
 		return list;
+	}
+	
+	private void use(StickList list, int rounds) {
+		list = createStickList(rounds);
+		for (int i=0; i<rounds; i++) {
+			list.use(1);
+			assertEquals(list.used(), i+1);
+		}
 	}
 	
 }

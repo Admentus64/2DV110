@@ -5,13 +5,12 @@ public class Game {
 	private StickList list;
 	private Player player;
 	private AI ai;
-	private boolean done;
+	private boolean done = false;
 	
 	public Game(StickList list, Player player, AI ai) {
 		this.list = list;
 		this.player = player;
 		this.ai = ai;
-		done = false;
 	}
 	
 	public void restart() {
@@ -24,6 +23,8 @@ public class Game {
 	public void play() {
 		if (done)
 			return;
+		
+		//Player
 		int input = player.draw();
 		if (!isValidDraw(input, 0, 3))
 			return;
@@ -32,31 +33,27 @@ public class Game {
 			done = true;
 			return;
 		}
-			
-		
-		removeSticks(input);
+		list.use(input);
 		if (checkEndOfGame(true))
 			return;
 		
-		removeSticks(ai.runAI(list.unused()));
+		//AI
+		ai.setMax(list.unused());
+		list.use(ai.draw());
 		if (checkEndOfGame(false))
 			return;
 		
 		printSticks();
 	}
 	
-	public StickList getStickList()			{ return list; }
+	//public StickList getStickList()			{ return list; }
 	public boolean isDone()					{ return done; }
 	public Player getPlayer()				{ return player; }
 	
 	
+	
 	private boolean isValidDraw(int value, int min, int max) {
 		return (value >= min && value <= max && value < list.unused());
-	}
-	
-	private void removeSticks(int number) {
-		for (int i=0; i<number; i++)
-			list.use();
 	}
 	
 	private boolean checkEndOfGame(boolean playerInput) {
@@ -71,9 +68,7 @@ public class Game {
 	}
 	
 	private void printSticks() {
-		System.out.print("Sticks remaining: " + list.toString() + "   (" + list.unused() +")");
-		for (int i=0; i<2; i++)
-			System.out.println();
+		System.out.print("Sticks remaining: " + list.toString() + "   (" + list.unused() +")\n\n");
 	}
 	
 }
