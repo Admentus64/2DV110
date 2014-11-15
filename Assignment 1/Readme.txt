@@ -26,35 +26,20 @@ For now, the project contains 30 sticks to draw. The player that must draw the l
 JUnit works smoothly without any conflicts, no further notes required.
 Code Coverage works, however not in combination with JUNit. Therefore CodeCover is used separately with the main method.
 The main method will be adjusted so it can run the program manual and perform extra tests without the use of JUNit.
-Mocking is not used yet, as for now I do not yet know how use it properly.
-Mocking will be added later into the project therefore.
+Mocking is used for a few instances, mostly when trying to test the game without the need for user input.
+The java class Main and the JUnit test GameTests make use of Mocking through the Mockito library.
 GitHub is used for storage of the project.
 Link found through: https://github.com/DevRobDev/2DV110/tree/master/Assignment%201
 
 
 
--------------------------
---- Package: complete ---
--------------------------
+---- ---------------------
+--- Source folder: src ---
+--------------------------
 
-Contain a fully untested working version of the project.
-This is version is made in order to decide what to project to make and how to test it.
-Note that this version is mostly likely filled with bugs, but it's is only a prototype.
-The real tested project will be contained within the main package: sticks within the src source folder.
-
-
-
--------------------------
---- Package: examples ---
--------------------------
-
-Found within the tests source folder.
-This package contains example tests, for testing purposes on how JUnit and Cover Cover works.
-Also for uploading testing purposes for GitHub.
-These files are only prototype files.
-The real testing classes will be contained within the main package: sticks within the tests source folder.
-
-
+This folder contains the java classes for the project itself.
+The files are in order:
+AI.java			An extended class of Player, used for having a computer controlled player.
 
 -----------------------------
 --- Current Progress Done ---
