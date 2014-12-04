@@ -1,11 +1,6 @@
 package sticks;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
+import static org.mockito.Mockito.*;
 import java.util.Random;
-
-import sticks.Stick;
-import sticks.StickList;
 
 /*
  * Include with Code Coverage.
@@ -16,10 +11,11 @@ public class Main {
 		
 		testStickList();
 		testAI();
+		testGameComponents();
 		runManual();
 		runAutomatically(100);
 		runAutomaticallyWithStaticInput();
-		
+		System.out.println("\nReached end of program");
 	}
 	
 	private static void runManual() {
@@ -62,6 +58,13 @@ public class Main {
 		game.play();
 	}
 	
+	private static void testGameComponents() {
+		Game game = initGame(false);
+		game.getPlayer();
+		game.getAI();
+		game.getStickList();
+	}
+	
 	private static void testStickList() {
 		
 		StickList list = new StickList();
@@ -76,6 +79,7 @@ public class Main {
 		list.add(new Stick());
 		list.add(new Stick());
 		
+		list.use();
 		list.use(0);
 		list.use(1);
 		list.use(2);

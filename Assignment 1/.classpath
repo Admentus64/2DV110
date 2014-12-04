@@ -9,5 +9,11 @@
 	<classpathentry kind="lib" path="D:/Programmering/LNU/JAR Extensions/Testing/jmockit-coverage.jar"/>
 	<classpathentry kind="lib" path="D:/Programmering/LNU/JAR Extensions/Testing/mockito-all-1.9.5.jar"/>
 	<classpathentry kind="lib" path="D:/Programmering/LNU/JAR Extensions/JUnit/system-rules-1.7.0.jar"/>
+	<classpathentry kind="lib" path="D:/Programmering/LNU/JAR Extensions/CodeCover/codecover-ant.jar"/>
+	<classpathentry kind="lib" path="D:/Programmering/LNU/JAR Extensions/CodeCover/codecover-batch.jar"/>
+	<classpathentry kind="lib" path="D:/Programmering/LNU/JAR Extensions/CodeCover/codecover-core.jar"/>
+	<classpathentry kind="lib" path="D:/Programmering/LNU/JAR Extensions/CodeCover/java-protocol-dummy.jar"/>
+	<classpathentry kind="lib" path="D:/Programmering/LNU/JAR Extensions/CodeCover/JUnit-TestRunner.jar"/>
+	<classpathentry kind="lib" path="D:/Programmering/LNU/JAR Extensions/CodeCover/servlet-live-notification.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

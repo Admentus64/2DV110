@@ -46,9 +46,10 @@ public class Game {
 		printSticks();
 	}
 	
-	//public StickList getStickList()			{ return list; }
 	public boolean isDone()					{ return done; }
 	public Player getPlayer()				{ return player; }
+	public Player getAI()					{ return ai; }
+	public StickList getStickList()			{ return list; }
 	
 	
 	
@@ -61,8 +62,8 @@ public class Game {
 			printSticks();
 			done = true;
 			if (!playerInput)
-				System.out.println("Player loses, AI wins!");
-			else System.out.println("Player wins, AI loses!");
+				System.out.println("Player loses, AI wins!\n");
+			else System.out.println("Player wins, AI loses!\n");
 		}
 		return done;
 	}

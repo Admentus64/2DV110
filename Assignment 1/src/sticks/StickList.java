@@ -30,6 +30,10 @@ public class StickList {
 			sticks.get(size()-used()-1).use();
 	}
 	
+	public void use() {
+		use(1);
+	}
+	
 	public void reset() {
 		for (Stick stick : sticks)
 			stick.unuse();

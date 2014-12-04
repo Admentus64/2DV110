@@ -3,7 +3,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.contrib.java.lang.system.TextFromStandardInputStream.emptyStandardInputStream;
+import static org.mockito.Mockito.*;
+
 import java.util.Random;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.TextFromStandardInputStream;
@@ -42,15 +45,27 @@ public class PlayerTests {
 	public void shouldInputWrongNumberWithoutUser() {
 		Player player = new Player();
 		int check = -1;		
+		
 		checkAssert("5", player, check);	//Must be between 0 and 3
 		checkAssert("4", player, check);	//To high value if max is 2
 		checkAssert("-1", player, check);	//Still to high value if max is 2
+		
+		
+		
+	}
+	
+	@Test
+	public void shouldVerifyPlayerDraw() {
+		Player player = mock(Player.class);
+		for (int i=0; i<100; i++)
+			player.draw();
+		verify(player, times(100)).draw();
 	}
 	
 	
 	
 	private void checkAssert(String provide, Player player, int check) {
-		systemInMock.provideText(provide);	
+		systemInMock.provideText(provide);
 		int result = player.draw();
 		assertEquals(result, check);
 	}

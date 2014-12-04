@@ -1,4 +1,5 @@
 package sticks;
+import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
@@ -18,7 +19,6 @@ public class StickListTests {
 	public void shouldRemoveStickValid() {
 		StickList list = createStickList(30);
 		list.remove(0);
-		
 	}
 	
 	@Test
@@ -127,6 +127,25 @@ public class StickListTests {
 		assertNotEquals(list.unused(), 6);
 		list = createStickList(8);
 		assertEquals(list.unused(), 8);
+	}
+	
+	@Test
+	public void shouldVerifyStickList() {
+		StickList list = mock(StickList.class);
+		Stick stick = new Stick();
+		
+		for (int i=0; i<10; i++)
+			list.add(stick);
+		verify(list, times(10)).add(stick);
+		
+		for (int i=0; i<5; i++)
+			list.use();
+		verify(list, times(5)).use();
+		
+		list.reset();
+		list.use(5);
+		verify(list).reset();
+		verify(list).use(5);
 	}
 	
 	

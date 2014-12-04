@@ -30,13 +30,15 @@ public class GameTests {
 			System.out.println("Mock Player draws: " + answer);
 			game.play();
 		}
+		verify(game.getPlayer(), atLeastOnce()).draw();
 	}
 	
 	@Test
-	public void shouldPlayGameWithUser() {
-		Game game = initGame(false);
-		while (!game.isDone())
+	public void shouldVerifyPlayGame() {
+		Game game = mock(Game.class);
+		if (!game.isDone())
 			game.play();
+		verify(game).play();
 	}
 	
 	

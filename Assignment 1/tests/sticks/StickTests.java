@@ -1,6 +1,7 @@
 package sticks;
 import sticks.Stick;
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 import org.junit.Test;
 
 public class StickTests {
@@ -27,6 +28,17 @@ public class StickTests {
 		Stick stick = createStick(false);
 		stick.use();
 		assertTrue(stick.isUsed());
+	}
+	
+	@Test
+	public void shouldVerifyStick() {
+		Stick stick = mock(Stick.class);
+		stick.use();
+		verify(stick).use();
+		when(stick.isUsed()).thenReturn(true);
+		if (stick.isUsed())
+			stick.unuse();
+		verify(stick).unuse();
 	}
 	
 	

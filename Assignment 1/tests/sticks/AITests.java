@@ -1,6 +1,7 @@
 package sticks;
 import static org.junit.Assert.*;
 import org.junit.Test;
+import static org.mockito.Mockito.*;
 
 public class AITests {
 	
@@ -37,6 +38,14 @@ public class AITests {
 			int test = ai.draw();						//Lets say the max value to draw is 4 so the pc draws 3.
 			assertEquals(test, 3);						//Check if all values are 3.
 		}
+	}
+	
+	@Test
+	public void shouldVerifyAIDraw() {
+		AI ai = mock(AI.class);
+		for (int i=0; i<100; i++)
+			ai.draw();
+		verify(ai, times(100)).draw();
 	}
 	
 }

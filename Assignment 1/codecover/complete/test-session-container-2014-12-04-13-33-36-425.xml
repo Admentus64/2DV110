@@ -1,0 +1,2220 @@
+<?xml version="1.0" encoding="UTF-8"?><TestSessionContainer xmlns="http://www.codecover.org/xml/testsession-container" Date="1417696416425" TestSessionContainerId="ce3ccc55-f1c9-4820-8b6a-f0b4a1798117" version="1.0">
+<SrcFileList>
+<SrcFile Content="package sticks;&#13;&#10;import java.util.ArrayList;&#13;&#10;&#13;&#10;/*&#13;&#10; * Include with Code Coverage.&#13;&#10; */&#13;&#10;public class StickList {&#13;&#10;&#9;&#13;&#10;&#9;private ArrayList&lt;Stick&gt; sticks = new ArrayList&lt;Stick&gt;();&#13;&#10;&#9;&#13;&#10;&#9;public void add(Stick stick) {&#13;&#10;&#9;&#9;sticks.add(stick);&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;&#9;public void remove(int i) {&#13;&#10;&#9;&#9;if (i&gt;=0 &amp;&amp; i&lt;sticks.size())&#13;&#10;&#9;&#9;&#9;sticks.remove(i);&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;&#9;public Stick get(int i) {&#13;&#10;&#9;&#9;if (i &lt; 0 || i &gt; sticks.size())&#13;&#10;&#9;&#9;&#9;return null;&#13;&#10;&#9;&#9;return sticks.get(i);&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;&#9;public void use(int number) {&#13;&#10;&#9;&#9;if (number &gt; unused() || number &lt; 0)&#13;&#10;&#9;&#9;&#9;return;&#13;&#10;&#9;&#9;for (int i=0; i&lt;number; i++)&#13;&#10;&#9;&#9;&#9;sticks.get(size()-used()-1).use();&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;&#9;public void use() {&#13;&#10;&#9;&#9;use(1);&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;&#9;public void reset() {&#13;&#10;&#9;&#9;for (Stick stick : sticks)&#13;&#10;&#9;&#9;&#9;stick.unuse();&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;&#9;@Override&#13;&#10;&#9;public String toString() {&#13;&#10;&#9;&#9;String output = &quot;&quot;;&#13;&#10;&#9;&#9;for (Stick stick : sticks)&#13;&#10;&#9;&#9;&#9;output += stick.toString();&#13;&#10;&#9;&#9;return output;&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;&#9;public int size()&#9;&#9;{ return sticks.size(); }&#13;&#10;&#9;public int unused()&#9;&#9;{ return size() - used(); }&#13;&#10;&#9;&#13;&#10;&#9;public int used() {&#13;&#10;&#9;&#9;int count = 0;&#13;&#10;&#9;&#9;for (Stick stick : sticks)&#13;&#10;&#9;&#9;&#9;if (stick.isUsed())&#13;&#10;&#9;&#9;&#9;&#9;count++;&#13;&#10;&#9;&#9;return count;&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;&#9;&#13;&#10;&#9;&#13;&#10;}&#13;&#10;" Filename="StickList.java" Intrnl_Id="1"/>
+<SrcFile Content="package sticks;&#13;&#10;&#13;&#10;/*&#13;&#10; * Include with Code Coverage.&#13;&#10; */&#13;&#10;public class Stick {&#13;&#10;&#9;&#13;&#10;&#9;private boolean used = false;&#13;&#10;&#9;&#13;&#10;&#9;public boolean isUsed()&#9;&#9;&#9;&#9;{ return used; }&#13;&#10;&#9;public void use()&#9;&#9;&#9;&#9;&#9;{ used = true; }&#13;&#10;&#9;public void unuse()&#9;&#9;&#9;&#9;&#9;{ used = false; }&#13;&#10;&#9;&#13;&#10;&#9;@Override&#13;&#10;&#9;public String toString() {&#13;&#10;&#9;&#9;if (used)&#13;&#10;&#9;&#9;&#9;return &quot;-&quot;;&#13;&#10;&#9;&#9;else return &quot;I&quot;;&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;}&#13;&#10;" Filename="Stick.java" Intrnl_Id="2"/>
+<SrcFile Content="package sticks;&#13;&#10;import java.util.Scanner;&#13;&#10;&#13;&#10;/*&#13;&#10; * Include with Code Coverage.&#13;&#10; */&#13;&#10;public class Player {&#13;&#10;&#9;&#13;&#10;&#9;private Scanner scan;&#13;&#10;&#13;&#10;&#9;public int draw() {&#13;&#10;&#9;&#9;System.out.print(&quot;(Enter 0 to quit) How many sticks do you want to draw? Choose 1, 2 or 3: &quot;);&#13;&#10;&#9;&#9;int draw = readInput();&#13;&#10;&#9;&#9;if (draw &lt; 0 || draw &gt; 3)&#13;&#10;&#9;&#9;&#9;&#9;return -1;&#13;&#10;&#9;&#9;return draw;&#13;&#10;&#9;}&#13;&#10;    &#13;&#10;    private int readInput() {&#13;&#10;    &#9;scan = new Scanner(System.in);&#13;&#10;    &#9;try&#9;{ return scan.nextInt(); }&#13;&#10;    &#9;catch(Exception e) {&#13;&#10;    &#9;&#9;System.err.println(&quot;Error with input, try again please.&quot;);&#13;&#10;    &#9;&#9;return -1;&#13;&#10;    &#9;}&#13;&#10;    }&#13;&#10;    &#13;&#10;}&#13;&#10;" Filename="Player.java" Intrnl_Id="3"/>
+<SrcFile Content="package sticks;&#13;&#10;import static org.mockito.Mockito.*;&#13;&#10;import java.util.Random;&#13;&#10;&#13;&#10;/*&#13;&#10; * Include with Code Coverage.&#13;&#10; */&#13;&#10;public class Main {&#13;&#10;&#9;&#13;&#10;&#9;public static void main(String[] args) {&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;testStickList();&#13;&#10;&#9;&#9;testAI();&#13;&#10;&#9;&#9;testGameComponents();&#13;&#10;&#9;&#9;runManual();&#13;&#10;&#9;&#9;runAutomatically(100);&#13;&#10;&#9;&#9;runAutomaticallyWithStaticInput();&#13;&#10;&#9;&#9;System.out.println(&quot;\nReached end of program&quot;);&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;&#9;private static void runManual() {&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;//Manual testing, requires input&#13;&#10;&#9;&#9;Game game = initGame(false);&#13;&#10;&#9;&#9;do { game.play(); } while (!game.isDone());&#13;&#10;&#9;&#9;&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;&#9;private static void runAutomatically(int runTimes) {&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;//Run the program without need for input, for testing purposes.&#13;&#10;&#9;&#9;Game game = initGame(true);&#13;&#10;&#9;&#9;for (int i=0; i&lt;runTimes; i++) {&#9;&#9;//Will always run 100 times as set by the main method&#13;&#10;&#9;&#9;&#9;do {&#13;&#10;&#9;&#9;&#9;&#9;int answer = randomNumber(3, 1);&#13;&#10;&#9;&#9;&#9;&#9;when(game.getPlayer().draw()).thenReturn(answer);&#13;&#10;&#9;&#9;&#9;&#9;System.out.println(&quot;Mock Player draws: &quot; + answer);&#13;&#10;&#9;&#9;&#9;&#9;game.play();&#13;&#10;&#9;&#9;&#9;} while (!game.isDone());&#13;&#10;&#9;&#9;&#9;game.restart();&#13;&#10;&#9;&#9;}&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;&#9;private static void runAutomaticallyWithStaticInput() {&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;//Run the program without need for input, for testing purposes.&#13;&#10;&#9;&#9;Game game = initGame(true);&#13;&#10;&#9;&#9;game.restart();&#9;&#9;&#9;//Should not work now&#13;&#10;&#9;&#9;for (int i=3; i&gt;=0; i--)&#13;&#10;&#9;&#9;&#9;runStaticInput(game, i);&#13;&#10;&#9;&#9;game.play();&#9;&#9;&#9;//One last run, which should not be running at all.&#13;&#10;&#9;&#9;&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;&#9;private static void runStaticInput(Game game, int answer) {&#13;&#10;&#9;&#9;when(game.getPlayer().draw()).thenReturn(answer);&#13;&#10;&#9;&#9;System.out.println(&quot;Mock Player draws: &quot; + answer);&#13;&#10;&#9;&#9;game.play();&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;&#9;private static void testGameComponents() {&#13;&#10;&#9;&#9;Game game = initGame(false);&#13;&#10;&#9;&#9;game.getPlayer();&#13;&#10;&#9;&#9;game.getAI();&#13;&#10;&#9;&#9;game.getStickList();&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;&#9;private static void testStickList() {&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;StickList list = new StickList();&#13;&#10;&#9;&#9;list.reset();&#13;&#10;&#9;&#9;list.toString();&#13;&#10;&#9;&#9;list.used();&#13;&#10;&#9;&#9;list.add(new Stick());&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;list.reset();&#13;&#10;&#9;&#9;list.toString();&#13;&#10;&#9;&#9;list.used();&#13;&#10;&#9;&#9;list.add(new Stick());&#13;&#10;&#9;&#9;list.add(new Stick());&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;list.use();&#13;&#10;&#9;&#9;list.use(0);&#13;&#10;&#9;&#9;list.use(1);&#13;&#10;&#9;&#9;list.use(2);&#13;&#10;&#9;&#9;list.use(-1);&#13;&#10;&#9;&#9;list.use(9);&#13;&#10;&#9;&#9;list.get(0);&#13;&#10;&#9;&#9;list.get(1);&#13;&#10;&#9;&#9;list.get(2);&#13;&#10;&#9;&#9;list.get(-1);&#13;&#10;&#9;&#9;list.get(9);&#13;&#10;&#9;&#9;list.remove(0);&#13;&#10;&#9;&#9;list.remove(1);&#13;&#10;&#9;&#9;list.remove(2);&#13;&#10;&#9;&#9;list.remove(-1);&#13;&#10;&#9;&#9;list.remove(9);&#13;&#10;&#9;&#9;&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;&#9;private static void testAI() {&#13;&#10;&#9;&#9;AI ai = new AI();&#13;&#10;&#9;&#9;ai.setMax(-1);&#13;&#10;&#9;&#9;ai.setMax(2);&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;&#9;private static Game initGame(boolean mock) {&#13;&#10;&#9;&#9;StickList list = new StickList();&#13;&#10;&#9;&#9;for (int i=0; i&lt;30; i++)&#9;&#9;&#9;//Will always run 30 times&#13;&#10;&#9;&#9;&#9;list.add(new Stick());&#13;&#10;&#9;&#9;if (mock)&#13;&#10;&#9;&#9;&#9;return new Game(list, mock(Player.class), new AI());&#13;&#10;&#9;&#9;else return new Game(list, new Player(), new AI());&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;&#9;private static int randomNumber(int value, int add) {&#13;&#10;&#9;&#9;Random rand = new Random();&#13;&#10;&#9;&#9;return  rand.nextInt(value) + add;&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;}&#13;&#10;" Filename="Main.java" Intrnl_Id="4"/>
+<SrcFile Content="package sticks;&#13;&#10;&#13;&#10;public class Game {&#13;&#10;&#9;&#13;&#10;&#9;private StickList list;&#13;&#10;&#9;private Player player;&#13;&#10;&#9;private AI ai;&#13;&#10;&#9;private boolean done = false;&#13;&#10;&#9;&#13;&#10;&#9;public Game(StickList list, Player player, AI ai) {&#13;&#10;&#9;&#9;this.list = list;&#13;&#10;&#9;&#9;this.player = player;&#13;&#10;&#9;&#9;this.ai = ai;&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;&#9;public void restart() {&#13;&#10;&#9;&#9;if (done) {&#13;&#10;&#9;&#9;&#9;done = false;&#13;&#10;&#9;&#9;&#9;list.reset();&#13;&#10;&#9;&#9;}&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;&#9;public void play() {&#13;&#10;&#9;&#9;if (done)&#13;&#10;&#9;&#9;&#9;return;&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;//Player&#13;&#10;&#9;&#9;int input = player.draw();&#13;&#10;&#9;&#9;if (!isValidDraw(input, 0, 3))&#13;&#10;&#9;&#9;&#9;return;&#13;&#10;&#9;&#9;if (input == 0) {&#13;&#10;&#9;&#9;&#9;System.out.println(&quot;Player ended game before it was finished.&quot;);&#13;&#10;&#9;&#9;&#9;done = true;&#13;&#10;&#9;&#9;&#9;return;&#13;&#10;&#9;&#9;}&#13;&#10;&#9;&#9;list.use(input);&#13;&#10;&#9;&#9;if (checkEndOfGame(true))&#13;&#10;&#9;&#9;&#9;return;&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;//AI&#13;&#10;&#9;&#9;ai.setMax(list.unused());&#13;&#10;&#9;&#9;list.use(ai.draw());&#13;&#10;&#9;&#9;if (checkEndOfGame(false))&#13;&#10;&#9;&#9;&#9;return;&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;printSticks();&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;&#9;public boolean isDone()&#9;&#9;&#9;&#9;&#9;{ return done; }&#13;&#10;&#9;public Player getPlayer()&#9;&#9;&#9;&#9;{ return player; }&#13;&#10;&#9;public Player getAI()&#9;&#9;&#9;&#9;&#9;{ return ai; }&#13;&#10;&#9;public StickList getStickList()&#9;&#9;&#9;{ return list; }&#13;&#10;&#9;&#13;&#10;&#9;&#13;&#10;&#9;&#13;&#10;&#9;private boolean isValidDraw(int value, int min, int max) {&#13;&#10;&#9;&#9;return (value &gt;= min &amp;&amp; value &lt;= max &amp;&amp; value &lt; list.unused());&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;&#9;private boolean checkEndOfGame(boolean playerInput) {&#13;&#10;&#9;&#9;if (list.unused() == 1) {&#13;&#10;&#9;&#9;&#9;printSticks();&#13;&#10;&#9;&#9;&#9;done = true;&#13;&#10;&#9;&#9;&#9;if (!playerInput)&#13;&#10;&#9;&#9;&#9;&#9;System.out.println(&quot;Player loses, AI wins!\n&quot;);&#13;&#10;&#9;&#9;&#9;else System.out.println(&quot;Player wins, AI loses!\n&quot;);&#13;&#10;&#9;&#9;}&#13;&#10;&#9;&#9;return done;&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;&#9;private void printSticks() {&#13;&#10;&#9;&#9;System.out.print(&quot;Sticks remaining: &quot; + list.toString() + &quot;   (&quot; + list.unused() +&quot;)\n\n&quot;);&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;}&#13;&#10;" Filename="Game.java" Intrnl_Id="5"/>
+<SrcFile Content="package sticks;&#13;&#10;import java.util.Random;&#13;&#10;&#13;&#10;/*&#13;&#10; * Include with Code Coverage.&#13;&#10; */&#13;&#10;public class AI extends Player {&#13;&#10;&#9;&#13;&#10;&#9;private Random random = new Random();&#13;&#10;&#9;private int max = 1;&#13;&#10;&#9;&#13;&#10;&#9;public void setMax(int i) {&#13;&#10;&#9;&#9;if (i&gt;0)&#13;&#10;&#9;&#9;&#9;max = i;&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;&#9;@Override&#13;&#10;&#9;public int draw() {&#13;&#10;&#9;&#9;if (max &lt;= 2) {&#13;&#10;&#9;&#9;&#9;System.out.println(&quot;PC draws: 1&quot;);&#13;&#10;&#9;&#9;&#9;return 1;&#13;&#10;&#9;&#9;}&#13;&#10;&#9;&#9;else if (max == 3) {&#13;&#10;&#9;&#9;&#9;System.out.println(&quot;PC draws: 2&quot;);&#13;&#10;&#9;&#9;&#9;return 2;&#13;&#10;&#9;&#9;}&#13;&#10;&#9;&#9;else if (max == 4) {&#13;&#10;&#9;&#9;&#9;System.out.println(&quot;PC draws: 3&quot;);&#13;&#10;&#9;&#9;&#9;return 3;&#13;&#10;&#9;&#9;}&#13;&#10;&#9;&#9;else {&#13;&#10;&#9;&#9;&#9;int rand = random.nextInt(3) + 1;&#13;&#10;&#9;&#9;&#9;System.out.println(&quot;PC draws: &quot; + rand);&#13;&#10;&#9;&#9;&#9;return rand;&#13;&#10;&#9;&#9;}&#13;&#10;&#9;}&#13;&#10;}&#13;&#10;" Filename="AI.java" Intrnl_Id="6"/>
+</SrcFileList>
+<CritList>
+<CritListEntry Name="org.codecover.model.utils.criteria.LoopCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.QMOCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.ConditionCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.BranchCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.SynchronizedStatementCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.StatementCoverage" PluginName="org.codecover"/>
+</CritList>
+<BoolOpList>
+<BoolOp Arity="2" Intrnl_Id="7" Name="conditional and (&amp;&amp;)">
+<BoolAssgnmntBoolMapList>
+<MapEntry BoolAssgnmnt="02" Value="false"/>
+<MapEntry BoolAssgnmnt="10" Value="false"/>
+<MapEntry BoolAssgnmnt="11" Value="true"/>
+</BoolAssgnmntBoolMapList>
+</BoolOp>
+<BoolOp Arity="2" Intrnl_Id="8" Name="conditional or (||)">
+<BoolAssgnmntBoolMapList>
+<MapEntry BoolAssgnmnt="00" Value="false"/>
+<MapEntry BoolAssgnmnt="01" Value="true"/>
+<MapEntry BoolAssgnmnt="12" Value="true"/>
+</BoolAssgnmntBoolMapList>
+</BoolOp>
+<BoolOp Arity="1" Intrnl_Id="9" Name="not (!)">
+<BoolAssgnmntBoolMapList>
+<MapEntry BoolAssgnmnt="1" Value="false"/>
+<MapEntry BoolAssgnmnt="0" Value="true"/>
+</BoolAssgnmntBoolMapList>
+</BoolOp>
+</BoolOpList>
+<HierarchyLvlTypeList>
+<HierarchyLvlType EnglishName="package" IntrnlName="package" Intrnl_Id="10"/>
+<HierarchyLvlType EnglishName="method" IntrnlName="method" Intrnl_Id="11"/>
+<HierarchyLvlType EnglishName="class" IntrnlName="class" Intrnl_Id="12"/>
+<HierarchyLvlType EnglishName="default package" IntrnlName="default package" Intrnl_Id="13"/>
+</HierarchyLvlTypeList>
+<MASTRoot>
+<HierarchyLvl HierarchyLvlId="460" HierarchyLvlTypeId="13" Intrnl_Id="14" Name="default package">
+<Header/>
+<LocList/>
+<HierarchyLvl HierarchyLvlId="459" HierarchyLvlTypeId="10" Intrnl_Id="15" Name="sticks">
+<Header/>
+<LocList/>
+<HierarchyLvl HierarchyLvlId="425" HierarchyLvlTypeId="12" Intrnl_Id="16" Name="StickList">
+<Header>
+<Loc EndOffset="111" SrcFileId="1" StartOffset="89"/>
+</Header>
+<LocList>
+<Loc EndOffset="1119" SrcFileId="1" StartOffset="89"/>
+</LocList>
+<StmntSeq Intrnl_Id="17">
+<LocList>
+<Loc EndOffset="176" SrcFileId="1" StartOffset="119"/>
+</LocList>
+<BasicStmnt CovItemId="S1" CovItemPrefix="sticks.StickList.java" Intrnl_Id="18">
+<LocList>
+<Loc EndOffset="176" SrcFileId="1" StartOffset="119"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+<HierarchyLvl HierarchyLvlId="415" HierarchyLvlTypeId="11" Intrnl_Id="19" Name="add">
+<Header>
+<Loc EndOffset="210" SrcFileId="1" StartOffset="182"/>
+</Header>
+<LocList>
+<Loc EndOffset="238" SrcFileId="1" StartOffset="182"/>
+</LocList>
+<StmntSeq Intrnl_Id="20">
+<LocList>
+<Loc EndOffset="234" SrcFileId="1" StartOffset="216"/>
+</LocList>
+<BasicStmnt CovItemId="S2" CovItemPrefix="sticks.StickList.java" Intrnl_Id="21">
+<LocList>
+<Loc EndOffset="234" SrcFileId="1" StartOffset="216"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="416" HierarchyLvlTypeId="11" Intrnl_Id="22" Name="remove">
+<Header>
+<Loc EndOffset="269" SrcFileId="1" StartOffset="244"/>
+</Header>
+<LocList>
+<Loc EndOffset="329" SrcFileId="1" StartOffset="244"/>
+</LocList>
+<StmntSeq Intrnl_Id="23">
+<LocList>
+<Loc EndOffset="325" SrcFileId="1" StartOffset="275"/>
+</LocList>
+<CondStmnt CovItemId="S3" CovItemPrefix="sticks.StickList.java" Intrnl_Id="24">
+<Branch CovItemId="B1" CovItemPrefix="sticks.StickList.java" Implct="false" Intrnl_Id="25">
+<Cond/>
+<LocList>
+<Loc EndOffset="325" SrcFileId="1" StartOffset="308"/>
+</LocList>
+<StmntSeq Intrnl_Id="26">
+<LocList>
+<Loc EndOffset="325" SrcFileId="1" StartOffset="308"/>
+</LocList>
+<BasicStmnt CovItemId="S4" CovItemPrefix="sticks.StickList.java" Intrnl_Id="27">
+<LocList>
+<Loc EndOffset="325" SrcFileId="1" StartOffset="308"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B2" CovItemPrefix="sticks.StickList.java" Implct="true" Intrnl_Id="28">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="29">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="277" SrcFileId="1" StartOffset="275"/>
+<LocList>
+<Loc EndOffset="325" SrcFileId="1" StartOffset="275"/>
+</LocList>
+<RootTerm CovItemId="C1" CovItemPrefix="sticks.StickList.java" Intrnl_Id="30">
+<OpTerm BooleanOpId="7" Intrnl_Id="31">
+<BasicBoolTerm Intrnl_Id="32">
+<LocList>
+<Loc EndOffset="283" SrcFileId="1" StartOffset="279"/>
+</LocList>
+</BasicBoolTerm>
+<BasicBoolTerm Intrnl_Id="33">
+<LocList>
+<Loc EndOffset="302" SrcFileId="1" StartOffset="287"/>
+</LocList>
+</BasicBoolTerm>
+<LocList>
+<Loc EndOffset="286" SrcFileId="1" StartOffset="284"/>
+</LocList>
+</OpTerm>
+</RootTerm>
+</CondStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="417" HierarchyLvlTypeId="11" Intrnl_Id="34" Name="get">
+<Header>
+<Loc EndOffset="358" SrcFileId="1" StartOffset="335"/>
+</Header>
+<LocList>
+<Loc EndOffset="441" SrcFileId="1" StartOffset="335"/>
+</LocList>
+<StmntSeq Intrnl_Id="35">
+<LocList>
+<Loc EndOffset="412" SrcFileId="1" StartOffset="364"/>
+<Loc EndOffset="437" SrcFileId="1" StartOffset="416"/>
+</LocList>
+<CondStmnt CovItemId="S5" CovItemPrefix="sticks.StickList.java" Intrnl_Id="36">
+<Branch CovItemId="B3" CovItemPrefix="sticks.StickList.java" Implct="false" Intrnl_Id="37">
+<Cond/>
+<LocList>
+<Loc EndOffset="412" SrcFileId="1" StartOffset="400"/>
+</LocList>
+<StmntSeq Intrnl_Id="38">
+<LocList>
+<Loc EndOffset="412" SrcFileId="1" StartOffset="400"/>
+</LocList>
+<BasicStmnt CovItemId="S6" CovItemPrefix="sticks.StickList.java" Intrnl_Id="39">
+<LocList>
+<Loc EndOffset="412" SrcFileId="1" StartOffset="400"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B4" CovItemPrefix="sticks.StickList.java" Implct="true" Intrnl_Id="40">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="41">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="366" SrcFileId="1" StartOffset="364"/>
+<LocList>
+<Loc EndOffset="412" SrcFileId="1" StartOffset="364"/>
+</LocList>
+<RootTerm CovItemId="C2" CovItemPrefix="sticks.StickList.java" Intrnl_Id="42">
+<OpTerm BooleanOpId="8" Intrnl_Id="43">
+<BasicBoolTerm Intrnl_Id="44">
+<LocList>
+<Loc EndOffset="373" SrcFileId="1" StartOffset="368"/>
+</LocList>
+</BasicBoolTerm>
+<BasicBoolTerm Intrnl_Id="45">
+<LocList>
+<Loc EndOffset="394" SrcFileId="1" StartOffset="377"/>
+</LocList>
+</BasicBoolTerm>
+<LocList>
+<Loc EndOffset="376" SrcFileId="1" StartOffset="374"/>
+</LocList>
+</OpTerm>
+</RootTerm>
+</CondStmnt>
+<BasicStmnt CovItemId="S7" CovItemPrefix="sticks.StickList.java" Intrnl_Id="46">
+<LocList>
+<Loc EndOffset="437" SrcFileId="1" StartOffset="416"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="418" HierarchyLvlTypeId="11" Intrnl_Id="47" Name="use">
+<Header>
+<Loc EndOffset="474" SrcFileId="1" StartOffset="447"/>
+</Header>
+<LocList>
+<Loc EndOffset="603" SrcFileId="1" StartOffset="447"/>
+</LocList>
+<StmntSeq Intrnl_Id="48">
+<LocList>
+<Loc EndOffset="528" SrcFileId="1" StartOffset="480"/>
+<Loc EndOffset="599" SrcFileId="1" StartOffset="532"/>
+</LocList>
+<CondStmnt CovItemId="S8" CovItemPrefix="sticks.StickList.java" Intrnl_Id="49">
+<Branch CovItemId="B5" CovItemPrefix="sticks.StickList.java" Implct="false" Intrnl_Id="50">
+<Cond/>
+<LocList>
+<Loc EndOffset="528" SrcFileId="1" StartOffset="521"/>
+</LocList>
+<StmntSeq Intrnl_Id="51">
+<LocList>
+<Loc EndOffset="528" SrcFileId="1" StartOffset="521"/>
+</LocList>
+<BasicStmnt CovItemId="S9" CovItemPrefix="sticks.StickList.java" Intrnl_Id="52">
+<LocList>
+<Loc EndOffset="528" SrcFileId="1" StartOffset="521"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B6" CovItemPrefix="sticks.StickList.java" Implct="true" Intrnl_Id="53">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="54">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="482" SrcFileId="1" StartOffset="480"/>
+<LocList>
+<Loc EndOffset="528" SrcFileId="1" StartOffset="480"/>
+</LocList>
+<RootTerm CovItemId="C3" CovItemPrefix="sticks.StickList.java" Intrnl_Id="55">
+<OpTerm BooleanOpId="8" Intrnl_Id="56">
+<BasicBoolTerm Intrnl_Id="57">
+<LocList>
+<Loc EndOffset="501" SrcFileId="1" StartOffset="484"/>
+</LocList>
+</BasicBoolTerm>
+<BasicBoolTerm Intrnl_Id="58">
+<LocList>
+<Loc EndOffset="515" SrcFileId="1" StartOffset="505"/>
+</LocList>
+</BasicBoolTerm>
+<LocList>
+<Loc EndOffset="504" SrcFileId="1" StartOffset="502"/>
+</LocList>
+</OpTerm>
+</RootTerm>
+</CondStmnt>
+<LoopStmnt CovItemId="S10" CovItemPrefix="sticks.StickList.java" Intrnl_Id="59" MltplExecId="L1-2" MltplExecPrefix="sticks.StickList.java" NvrExecId="L1-0" NvrExecPrefix="sticks.StickList.java" OnceExecutedId="L1-1" OnceExecutedPrefix="sticks.StickList.java" OptBodyExec="true">
+<StmntSeq Intrnl_Id="60">
+<LocList>
+<Loc EndOffset="599" SrcFileId="1" StartOffset="565"/>
+</LocList>
+<BasicStmnt CovItemId="S11" CovItemPrefix="sticks.StickList.java" Intrnl_Id="61">
+<LocList>
+<Loc EndOffset="599" SrcFileId="1" StartOffset="565"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+<Keyword EndOffset="535" SrcFileId="1" StartOffset="532"/>
+<LocList>
+<Loc EndOffset="599" SrcFileId="1" StartOffset="532"/>
+</LocList>
+<RootTerm CovItemId="C4" CovItemPrefix="sticks.StickList.java" Intrnl_Id="62">
+<BasicBoolTerm Intrnl_Id="63">
+<LocList>
+<Loc EndOffset="554" SrcFileId="1" StartOffset="546"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</LoopStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="419" HierarchyLvlTypeId="11" Intrnl_Id="64" Name="use">
+<Header>
+<Loc EndOffset="626" SrcFileId="1" StartOffset="609"/>
+</Header>
+<LocList>
+<Loc EndOffset="643" SrcFileId="1" StartOffset="609"/>
+</LocList>
+<StmntSeq Intrnl_Id="65">
+<LocList>
+<Loc EndOffset="639" SrcFileId="1" StartOffset="632"/>
+</LocList>
+<BasicStmnt CovItemId="S12" CovItemPrefix="sticks.StickList.java" Intrnl_Id="66">
+<LocList>
+<Loc EndOffset="639" SrcFileId="1" StartOffset="632"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="420" HierarchyLvlTypeId="11" Intrnl_Id="67" Name="reset">
+<Header>
+<Loc EndOffset="668" SrcFileId="1" StartOffset="649"/>
+</Header>
+<LocList>
+<Loc EndOffset="723" SrcFileId="1" StartOffset="649"/>
+</LocList>
+<StmntSeq Intrnl_Id="68">
+<LocList>
+<Loc EndOffset="719" SrcFileId="1" StartOffset="674"/>
+</LocList>
+<LoopStmnt CovItemId="S13" CovItemPrefix="sticks.StickList.java" Intrnl_Id="69" MltplExecId="L2-2" MltplExecPrefix="sticks.StickList.java" NvrExecId="L2-0" NvrExecPrefix="sticks.StickList.java" OnceExecutedId="L2-1" OnceExecutedPrefix="sticks.StickList.java" OptBodyExec="true">
+<StmntSeq Intrnl_Id="70">
+<LocList>
+<Loc EndOffset="719" SrcFileId="1" StartOffset="705"/>
+</LocList>
+<BasicStmnt CovItemId="S14" CovItemPrefix="sticks.StickList.java" Intrnl_Id="71">
+<LocList>
+<Loc EndOffset="719" SrcFileId="1" StartOffset="705"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+<Keyword EndOffset="677" SrcFileId="1" StartOffset="674"/>
+<LocList>
+<Loc EndOffset="719" SrcFileId="1" StartOffset="674"/>
+</LocList>
+</LoopStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="421" HierarchyLvlTypeId="11" Intrnl_Id="72" Name="toString">
+<Header>
+<Loc EndOffset="765" SrcFileId="1" StartOffset="729"/>
+</Header>
+<LocList>
+<Loc EndOffset="874" SrcFileId="1" StartOffset="729"/>
+</LocList>
+<StmntSeq Intrnl_Id="73">
+<LocList>
+<Loc EndOffset="790" SrcFileId="1" StartOffset="771"/>
+<Loc EndOffset="852" SrcFileId="1" StartOffset="794"/>
+<Loc EndOffset="870" SrcFileId="1" StartOffset="856"/>
+</LocList>
+<BasicStmnt CovItemId="S15" CovItemPrefix="sticks.StickList.java" Intrnl_Id="74">
+<LocList>
+<Loc EndOffset="790" SrcFileId="1" StartOffset="771"/>
+</LocList>
+</BasicStmnt>
+<LoopStmnt CovItemId="S16" CovItemPrefix="sticks.StickList.java" Intrnl_Id="75" MltplExecId="L3-2" MltplExecPrefix="sticks.StickList.java" NvrExecId="L3-0" NvrExecPrefix="sticks.StickList.java" OnceExecutedId="L3-1" OnceExecutedPrefix="sticks.StickList.java" OptBodyExec="true">
+<StmntSeq Intrnl_Id="76">
+<LocList>
+<Loc EndOffset="852" SrcFileId="1" StartOffset="825"/>
+</LocList>
+<BasicStmnt CovItemId="S17" CovItemPrefix="sticks.StickList.java" Intrnl_Id="77">
+<LocList>
+<Loc EndOffset="852" SrcFileId="1" StartOffset="825"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+<Keyword EndOffset="797" SrcFileId="1" StartOffset="794"/>
+<LocList>
+<Loc EndOffset="852" SrcFileId="1" StartOffset="794"/>
+</LocList>
+</LoopStmnt>
+<BasicStmnt CovItemId="S18" CovItemPrefix="sticks.StickList.java" Intrnl_Id="78">
+<LocList>
+<Loc EndOffset="870" SrcFileId="1" StartOffset="856"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="422" HierarchyLvlTypeId="11" Intrnl_Id="79" Name="size">
+<Header>
+<Loc EndOffset="897" SrcFileId="1" StartOffset="880"/>
+</Header>
+<LocList>
+<Loc EndOffset="924" SrcFileId="1" StartOffset="880"/>
+</LocList>
+<StmntSeq Intrnl_Id="80">
+<LocList>
+<Loc EndOffset="922" SrcFileId="1" StartOffset="901"/>
+</LocList>
+<BasicStmnt CovItemId="S19" CovItemPrefix="sticks.StickList.java" Intrnl_Id="81">
+<LocList>
+<Loc EndOffset="922" SrcFileId="1" StartOffset="901"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="423" HierarchyLvlTypeId="11" Intrnl_Id="82" Name="unused">
+<Header>
+<Loc EndOffset="946" SrcFileId="1" StartOffset="927"/>
+</Header>
+<LocList>
+<Loc EndOffset="975" SrcFileId="1" StartOffset="927"/>
+</LocList>
+<StmntSeq Intrnl_Id="83">
+<LocList>
+<Loc EndOffset="973" SrcFileId="1" StartOffset="950"/>
+</LocList>
+<BasicStmnt CovItemId="S20" CovItemPrefix="sticks.StickList.java" Intrnl_Id="84">
+<LocList>
+<Loc EndOffset="973" SrcFileId="1" StartOffset="950"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="424" HierarchyLvlTypeId="11" Intrnl_Id="85" Name="used">
+<Header>
+<Loc EndOffset="998" SrcFileId="1" StartOffset="981"/>
+</Header>
+<LocList>
+<Loc EndOffset="1107" SrcFileId="1" StartOffset="981"/>
+</LocList>
+<StmntSeq Intrnl_Id="86">
+<LocList>
+<Loc EndOffset="1018" SrcFileId="1" StartOffset="1004"/>
+<Loc EndOffset="1086" SrcFileId="1" StartOffset="1022"/>
+<Loc EndOffset="1103" SrcFileId="1" StartOffset="1090"/>
+</LocList>
+<BasicStmnt CovItemId="S21" CovItemPrefix="sticks.StickList.java" Intrnl_Id="87">
+<LocList>
+<Loc EndOffset="1018" SrcFileId="1" StartOffset="1004"/>
+</LocList>
+</BasicStmnt>
+<LoopStmnt CovItemId="S22" CovItemPrefix="sticks.StickList.java" Intrnl_Id="88" MltplExecId="L4-2" MltplExecPrefix="sticks.StickList.java" NvrExecId="L4-0" NvrExecPrefix="sticks.StickList.java" OnceExecutedId="L4-1" OnceExecutedPrefix="sticks.StickList.java" OptBodyExec="true">
+<StmntSeq Intrnl_Id="89">
+<LocList>
+<Loc EndOffset="1086" SrcFileId="1" StartOffset="1053"/>
+</LocList>
+<CondStmnt CovItemId="S23" CovItemPrefix="sticks.StickList.java" Intrnl_Id="90">
+<Branch CovItemId="B7" CovItemPrefix="sticks.StickList.java" Implct="false" Intrnl_Id="91">
+<Cond/>
+<LocList>
+<Loc EndOffset="1086" SrcFileId="1" StartOffset="1078"/>
+</LocList>
+<StmntSeq Intrnl_Id="92">
+<LocList>
+<Loc EndOffset="1086" SrcFileId="1" StartOffset="1078"/>
+</LocList>
+<BasicStmnt CovItemId="S24" CovItemPrefix="sticks.StickList.java" Intrnl_Id="93">
+<LocList>
+<Loc EndOffset="1086" SrcFileId="1" StartOffset="1078"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B8" CovItemPrefix="sticks.StickList.java" Implct="true" Intrnl_Id="94">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="95">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="1055" SrcFileId="1" StartOffset="1053"/>
+<LocList>
+<Loc EndOffset="1086" SrcFileId="1" StartOffset="1053"/>
+</LocList>
+<RootTerm CovItemId="C5" CovItemPrefix="sticks.StickList.java" Intrnl_Id="96">
+<BasicBoolTerm Intrnl_Id="97">
+<LocList>
+<Loc EndOffset="1071" SrcFileId="1" StartOffset="1057"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</CondStmnt>
+</StmntSeq>
+<Keyword EndOffset="1025" SrcFileId="1" StartOffset="1022"/>
+<LocList>
+<Loc EndOffset="1086" SrcFileId="1" StartOffset="1022"/>
+</LocList>
+</LoopStmnt>
+<BasicStmnt CovItemId="S25" CovItemPrefix="sticks.StickList.java" Intrnl_Id="98">
+<LocList>
+<Loc EndOffset="1103" SrcFileId="1" StartOffset="1090"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="430" HierarchyLvlTypeId="12" Intrnl_Id="99" Name="Stick">
+<Header>
+<Loc EndOffset="78" SrcFileId="2" StartOffset="60"/>
+</Header>
+<LocList>
+<Loc EndOffset="352" SrcFileId="2" StartOffset="60"/>
+</LocList>
+<StmntSeq Intrnl_Id="100">
+<LocList>
+<Loc EndOffset="115" SrcFileId="2" StartOffset="86"/>
+</LocList>
+<BasicStmnt CovItemId="S1" CovItemPrefix="sticks.Stick.java" Intrnl_Id="101">
+<LocList>
+<Loc EndOffset="115" SrcFileId="2" StartOffset="86"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+<HierarchyLvl HierarchyLvlId="426" HierarchyLvlTypeId="11" Intrnl_Id="102" Name="isUsed">
+<Header>
+<Loc EndOffset="144" SrcFileId="2" StartOffset="121"/>
+</Header>
+<LocList>
+<Loc EndOffset="164" SrcFileId="2" StartOffset="121"/>
+</LocList>
+<StmntSeq Intrnl_Id="103">
+<LocList>
+<Loc EndOffset="162" SrcFileId="2" StartOffset="150"/>
+</LocList>
+<BasicStmnt CovItemId="S2" CovItemPrefix="sticks.Stick.java" Intrnl_Id="104">
+<LocList>
+<Loc EndOffset="162" SrcFileId="2" StartOffset="150"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="427" HierarchyLvlTypeId="11" Intrnl_Id="105" Name="use">
+<Header>
+<Loc EndOffset="184" SrcFileId="2" StartOffset="167"/>
+</Header>
+<LocList>
+<Loc EndOffset="205" SrcFileId="2" StartOffset="167"/>
+</LocList>
+<StmntSeq Intrnl_Id="106">
+<LocList>
+<Loc EndOffset="203" SrcFileId="2" StartOffset="191"/>
+</LocList>
+<BasicStmnt CovItemId="S3" CovItemPrefix="sticks.Stick.java" Intrnl_Id="107">
+<LocList>
+<Loc EndOffset="203" SrcFileId="2" StartOffset="191"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="428" HierarchyLvlTypeId="11" Intrnl_Id="108" Name="unuse">
+<Header>
+<Loc EndOffset="227" SrcFileId="2" StartOffset="208"/>
+</Header>
+<LocList>
+<Loc EndOffset="249" SrcFileId="2" StartOffset="208"/>
+</LocList>
+<StmntSeq Intrnl_Id="109">
+<LocList>
+<Loc EndOffset="247" SrcFileId="2" StartOffset="234"/>
+</LocList>
+<BasicStmnt CovItemId="S4" CovItemPrefix="sticks.Stick.java" Intrnl_Id="110">
+<LocList>
+<Loc EndOffset="247" SrcFileId="2" StartOffset="234"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="429" HierarchyLvlTypeId="11" Intrnl_Id="111" Name="toString">
+<Header>
+<Loc EndOffset="291" SrcFileId="2" StartOffset="255"/>
+</Header>
+<LocList>
+<Loc EndOffset="346" SrcFileId="2" StartOffset="255"/>
+</LocList>
+<StmntSeq Intrnl_Id="112">
+<LocList>
+<Loc EndOffset="342" SrcFileId="2" StartOffset="297"/>
+</LocList>
+<CondStmnt CovItemId="S5" CovItemPrefix="sticks.Stick.java" Intrnl_Id="113">
+<Branch CovItemId="B1" CovItemPrefix="sticks.Stick.java" Implct="false" Intrnl_Id="114">
+<Cond/>
+<LocList>
+<Loc EndOffset="322" SrcFileId="2" StartOffset="311"/>
+</LocList>
+<StmntSeq Intrnl_Id="115">
+<LocList>
+<Loc EndOffset="322" SrcFileId="2" StartOffset="311"/>
+</LocList>
+<BasicStmnt CovItemId="S6" CovItemPrefix="sticks.Stick.java" Intrnl_Id="116">
+<LocList>
+<Loc EndOffset="322" SrcFileId="2" StartOffset="311"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B2" CovItemPrefix="sticks.Stick.java" Implct="false" Intrnl_Id="117">
+<Cond>
+<Loc EndOffset="330" SrcFileId="2" StartOffset="326"/>
+</Cond>
+<LocList>
+<Loc EndOffset="342" SrcFileId="2" StartOffset="331"/>
+</LocList>
+<StmntSeq Intrnl_Id="118">
+<LocList>
+<Loc EndOffset="342" SrcFileId="2" StartOffset="331"/>
+</LocList>
+<BasicStmnt CovItemId="S7" CovItemPrefix="sticks.Stick.java" Intrnl_Id="119">
+<LocList>
+<Loc EndOffset="342" SrcFileId="2" StartOffset="331"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="299" SrcFileId="2" StartOffset="297"/>
+<LocList>
+<Loc EndOffset="342" SrcFileId="2" StartOffset="297"/>
+</LocList>
+<RootTerm CovItemId="C1" CovItemPrefix="sticks.Stick.java" Intrnl_Id="120">
+<BasicBoolTerm Intrnl_Id="121">
+<LocList>
+<Loc EndOffset="305" SrcFileId="2" StartOffset="301"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</CondStmnt>
+</StmntSeq>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="433" HierarchyLvlTypeId="12" Intrnl_Id="122" Name="Player">
+<Header>
+<Loc EndOffset="106" SrcFileId="3" StartOffset="87"/>
+</Header>
+<LocList>
+<Loc EndOffset="595" SrcFileId="3" StartOffset="87"/>
+</LocList>
+<HierarchyLvl HierarchyLvlId="431" HierarchyLvlTypeId="11" Intrnl_Id="123" Name="draw">
+<Header>
+<Loc EndOffset="157" SrcFileId="3" StartOffset="140"/>
+</Header>
+<LocList>
+<Loc EndOffset="349" SrcFileId="3" StartOffset="140"/>
+</LocList>
+<StmntSeq Intrnl_Id="124">
+<LocList>
+<Loc EndOffset="257" SrcFileId="3" StartOffset="163"/>
+<Loc EndOffset="284" SrcFileId="3" StartOffset="261"/>
+<Loc EndOffset="329" SrcFileId="3" StartOffset="288"/>
+<Loc EndOffset="345" SrcFileId="3" StartOffset="333"/>
+</LocList>
+<BasicStmnt CovItemId="S1" CovItemPrefix="sticks.Player.java" Intrnl_Id="125">
+<LocList>
+<Loc EndOffset="257" SrcFileId="3" StartOffset="163"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S2" CovItemPrefix="sticks.Player.java" Intrnl_Id="126">
+<LocList>
+<Loc EndOffset="284" SrcFileId="3" StartOffset="261"/>
+</LocList>
+</BasicStmnt>
+<CondStmnt CovItemId="S3" CovItemPrefix="sticks.Player.java" Intrnl_Id="127">
+<Branch CovItemId="B1" CovItemPrefix="sticks.Player.java" Implct="false" Intrnl_Id="128">
+<Cond/>
+<LocList>
+<Loc EndOffset="329" SrcFileId="3" StartOffset="319"/>
+</LocList>
+<StmntSeq Intrnl_Id="129">
+<LocList>
+<Loc EndOffset="329" SrcFileId="3" StartOffset="319"/>
+</LocList>
+<BasicStmnt CovItemId="S4" CovItemPrefix="sticks.Player.java" Intrnl_Id="130">
+<LocList>
+<Loc EndOffset="329" SrcFileId="3" StartOffset="319"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B2" CovItemPrefix="sticks.Player.java" Implct="true" Intrnl_Id="131">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="132">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="290" SrcFileId="3" StartOffset="288"/>
+<LocList>
+<Loc EndOffset="329" SrcFileId="3" StartOffset="288"/>
+</LocList>
+<RootTerm CovItemId="C1" CovItemPrefix="sticks.Player.java" Intrnl_Id="133">
+<OpTerm BooleanOpId="8" Intrnl_Id="134">
+<BasicBoolTerm Intrnl_Id="135">
+<LocList>
+<Loc EndOffset="300" SrcFileId="3" StartOffset="292"/>
+</LocList>
+</BasicBoolTerm>
+<BasicBoolTerm Intrnl_Id="136">
+<LocList>
+<Loc EndOffset="312" SrcFileId="3" StartOffset="304"/>
+</LocList>
+</BasicBoolTerm>
+<LocList>
+<Loc EndOffset="303" SrcFileId="3" StartOffset="301"/>
+</LocList>
+</OpTerm>
+</RootTerm>
+</CondStmnt>
+<BasicStmnt CovItemId="S5" CovItemPrefix="sticks.Player.java" Intrnl_Id="137">
+<LocList>
+<Loc EndOffset="345" SrcFileId="3" StartOffset="333"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="432" HierarchyLvlTypeId="11" Intrnl_Id="138" Name="readInput">
+<Header>
+<Loc EndOffset="384" SrcFileId="3" StartOffset="361"/>
+</Header>
+<LocList>
+<Loc EndOffset="586" SrcFileId="3" StartOffset="361"/>
+</LocList>
+<StmntSeq Intrnl_Id="139">
+<LocList>
+<Loc EndOffset="423" SrcFileId="3" StartOffset="393"/>
+<Loc EndOffset="458" SrcFileId="3" StartOffset="436"/>
+<Loc EndOffset="579" SrcFileId="3" StartOffset="430"/>
+</LocList>
+<BasicStmnt CovItemId="S6" CovItemPrefix="sticks.Player.java" Intrnl_Id="140">
+<LocList>
+<Loc EndOffset="423" SrcFileId="3" StartOffset="393"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S8" CovItemPrefix="sticks.Player.java" Intrnl_Id="141">
+<LocList>
+<Loc EndOffset="458" SrcFileId="3" StartOffset="436"/>
+</LocList>
+</BasicStmnt>
+<CondStmnt CovItemId="S7" CovItemPrefix="sticks.Player.java" Intrnl_Id="142">
+<Branch CovItemId="B3" CovItemPrefix="sticks.Player.java" Implct="true" Intrnl_Id="143">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="144">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B4" CovItemPrefix="sticks.Player.java" Implct="false" Intrnl_Id="145">
+<Cond>
+<Loc EndOffset="485" SrcFileId="3" StartOffset="467"/>
+</Cond>
+<LocList>
+<Loc EndOffset="579" SrcFileId="3" StartOffset="486"/>
+</LocList>
+<StmntSeq Intrnl_Id="146">
+<LocList>
+<Loc EndOffset="553" SrcFileId="3" StartOffset="495"/>
+<Loc EndOffset="571" SrcFileId="3" StartOffset="561"/>
+</LocList>
+<BasicStmnt CovItemId="S9" CovItemPrefix="sticks.Player.java" Intrnl_Id="147">
+<LocList>
+<Loc EndOffset="553" SrcFileId="3" StartOffset="495"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S10" CovItemPrefix="sticks.Player.java" Intrnl_Id="148">
+<LocList>
+<Loc EndOffset="571" SrcFileId="3" StartOffset="561"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="433" SrcFileId="3" StartOffset="430"/>
+<LocList>
+<Loc EndOffset="579" SrcFileId="3" StartOffset="430"/>
+</LocList>
+</CondStmnt>
+</StmntSeq>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="444" HierarchyLvlTypeId="12" Intrnl_Id="149" Name="Main">
+<Header>
+<Loc EndOffset="141" SrcFileId="4" StartOffset="124"/>
+</Header>
+<LocList>
+<Loc EndOffset="2810" SrcFileId="4" StartOffset="124"/>
+</LocList>
+<HierarchyLvl HierarchyLvlId="434" HierarchyLvlTypeId="11" Intrnl_Id="150" Name="main">
+<Header>
+<Loc EndOffset="187" SrcFileId="4" StartOffset="149"/>
+</Header>
+<LocList>
+<Loc EndOffset="386" SrcFileId="4" StartOffset="149"/>
+</LocList>
+<StmntSeq Intrnl_Id="151">
+<LocList>
+<Loc EndOffset="213" SrcFileId="4" StartOffset="197"/>
+<Loc EndOffset="226" SrcFileId="4" StartOffset="217"/>
+<Loc EndOffset="251" SrcFileId="4" StartOffset="230"/>
+<Loc EndOffset="267" SrcFileId="4" StartOffset="255"/>
+<Loc EndOffset="293" SrcFileId="4" StartOffset="271"/>
+<Loc EndOffset="331" SrcFileId="4" StartOffset="297"/>
+<Loc EndOffset="382" SrcFileId="4" StartOffset="335"/>
+</LocList>
+<BasicStmnt CovItemId="S1" CovItemPrefix="sticks.Main.java" Intrnl_Id="152">
+<LocList>
+<Loc EndOffset="213" SrcFileId="4" StartOffset="197"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S2" CovItemPrefix="sticks.Main.java" Intrnl_Id="153">
+<LocList>
+<Loc EndOffset="226" SrcFileId="4" StartOffset="217"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S3" CovItemPrefix="sticks.Main.java" Intrnl_Id="154">
+<LocList>
+<Loc EndOffset="251" SrcFileId="4" StartOffset="230"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S4" CovItemPrefix="sticks.Main.java" Intrnl_Id="155">
+<LocList>
+<Loc EndOffset="267" SrcFileId="4" StartOffset="255"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S5" CovItemPrefix="sticks.Main.java" Intrnl_Id="156">
+<LocList>
+<Loc EndOffset="293" SrcFileId="4" StartOffset="271"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S6" CovItemPrefix="sticks.Main.java" Intrnl_Id="157">
+<LocList>
+<Loc EndOffset="331" SrcFileId="4" StartOffset="297"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S7" CovItemPrefix="sticks.Main.java" Intrnl_Id="158">
+<LocList>
+<Loc EndOffset="382" SrcFileId="4" StartOffset="335"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="435" HierarchyLvlTypeId="11" Intrnl_Id="159" Name="runManual">
+<Header>
+<Loc EndOffset="423" SrcFileId="4" StartOffset="392"/>
+</Header>
+<LocList>
+<Loc EndOffset="552" SrcFileId="4" StartOffset="392"/>
+</LocList>
+<StmntSeq Intrnl_Id="160">
+<LocList>
+<Loc EndOffset="497" SrcFileId="4" StartOffset="469"/>
+<Loc EndOffset="544" SrcFileId="4" StartOffset="501"/>
+</LocList>
+<BasicStmnt CovItemId="S8" CovItemPrefix="sticks.Main.java" Intrnl_Id="161">
+<LocList>
+<Loc EndOffset="497" SrcFileId="4" StartOffset="469"/>
+</LocList>
+</BasicStmnt>
+<LoopStmnt CovItemId="S9" CovItemPrefix="sticks.Main.java" Intrnl_Id="162" MltplExecId="L1-2" MltplExecPrefix="sticks.Main.java" NvrExecId="L1-0" NvrExecPrefix="sticks.Main.java" OnceExecutedId="L1-1" OnceExecutedPrefix="sticks.Main.java" OptBodyExec="false">
+<StmntSeq Intrnl_Id="163">
+<LocList>
+<Loc EndOffset="518" SrcFileId="4" StartOffset="506"/>
+</LocList>
+<BasicStmnt CovItemId="S10" CovItemPrefix="sticks.Main.java" Intrnl_Id="164">
+<LocList>
+<Loc EndOffset="518" SrcFileId="4" StartOffset="506"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+<Keyword EndOffset="503" SrcFileId="4" StartOffset="501"/>
+<LocList>
+<Loc EndOffset="544" SrcFileId="4" StartOffset="501"/>
+</LocList>
+<RootTerm CovItemId="C1" CovItemPrefix="sticks.Main.java" Intrnl_Id="165">
+<OpTerm BooleanOpId="9" Intrnl_Id="166">
+<BasicBoolTerm Intrnl_Id="167">
+<LocList>
+<Loc EndOffset="542" SrcFileId="4" StartOffset="529"/>
+</LocList>
+</BasicBoolTerm>
+<LocList>
+<Loc EndOffset="529" SrcFileId="4" StartOffset="528"/>
+</LocList>
+</OpTerm>
+</RootTerm>
+</LoopStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="436" HierarchyLvlTypeId="11" Intrnl_Id="168" Name="runAutomatically">
+<Header>
+<Loc EndOffset="608" SrcFileId="4" StartOffset="558"/>
+</Header>
+<LocList>
+<Loc EndOffset="1039" SrcFileId="4" StartOffset="558"/>
+</LocList>
+<StmntSeq Intrnl_Id="169">
+<LocList>
+<Loc EndOffset="712" SrcFileId="4" StartOffset="685"/>
+<Loc EndOffset="1035" SrcFileId="4" StartOffset="716"/>
+</LocList>
+<BasicStmnt CovItemId="S11" CovItemPrefix="sticks.Main.java" Intrnl_Id="170">
+<LocList>
+<Loc EndOffset="712" SrcFileId="4" StartOffset="685"/>
+</LocList>
+</BasicStmnt>
+<LoopStmnt CovItemId="S12" CovItemPrefix="sticks.Main.java" Intrnl_Id="171" MltplExecId="L2-2" MltplExecPrefix="sticks.Main.java" NvrExecId="L2-0" NvrExecPrefix="sticks.Main.java" OnceExecutedId="L2-1" OnceExecutedPrefix="sticks.Main.java" OptBodyExec="true">
+<StmntSeq Intrnl_Id="172">
+<LocList>
+<Loc EndOffset="1010" SrcFileId="4" StartOffset="808"/>
+<Loc EndOffset="1030" SrcFileId="4" StartOffset="1015"/>
+</LocList>
+<LoopStmnt CovItemId="S13" CovItemPrefix="sticks.Main.java" Intrnl_Id="173" MltplExecId="L3-2" MltplExecPrefix="sticks.Main.java" NvrExecId="L3-0" NvrExecPrefix="sticks.Main.java" OnceExecutedId="L3-1" OnceExecutedPrefix="sticks.Main.java" OptBodyExec="false">
+<StmntSeq Intrnl_Id="174">
+<LocList>
+<Loc EndOffset="850" SrcFileId="4" StartOffset="818"/>
+<Loc EndOffset="905" SrcFileId="4" StartOffset="856"/>
+<Loc EndOffset="962" SrcFileId="4" StartOffset="911"/>
+<Loc EndOffset="980" SrcFileId="4" StartOffset="968"/>
+</LocList>
+<BasicStmnt CovItemId="S14" CovItemPrefix="sticks.Main.java" Intrnl_Id="175">
+<LocList>
+<Loc EndOffset="850" SrcFileId="4" StartOffset="818"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S15" CovItemPrefix="sticks.Main.java" Intrnl_Id="176">
+<LocList>
+<Loc EndOffset="905" SrcFileId="4" StartOffset="856"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S16" CovItemPrefix="sticks.Main.java" Intrnl_Id="177">
+<LocList>
+<Loc EndOffset="962" SrcFileId="4" StartOffset="911"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S17" CovItemPrefix="sticks.Main.java" Intrnl_Id="178">
+<LocList>
+<Loc EndOffset="980" SrcFileId="4" StartOffset="968"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+<Keyword EndOffset="810" SrcFileId="4" StartOffset="808"/>
+<LocList>
+<Loc EndOffset="1010" SrcFileId="4" StartOffset="808"/>
+</LocList>
+<RootTerm CovItemId="C3" CovItemPrefix="sticks.Main.java" Intrnl_Id="179">
+<OpTerm BooleanOpId="9" Intrnl_Id="180">
+<BasicBoolTerm Intrnl_Id="181">
+<LocList>
+<Loc EndOffset="1008" SrcFileId="4" StartOffset="995"/>
+</LocList>
+</BasicBoolTerm>
+<LocList>
+<Loc EndOffset="995" SrcFileId="4" StartOffset="994"/>
+</LocList>
+</OpTerm>
+</RootTerm>
+</LoopStmnt>
+<BasicStmnt CovItemId="S18" CovItemPrefix="sticks.Main.java" Intrnl_Id="182">
+<LocList>
+<Loc EndOffset="1030" SrcFileId="4" StartOffset="1015"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+<Keyword EndOffset="719" SrcFileId="4" StartOffset="716"/>
+<LocList>
+<Loc EndOffset="1035" SrcFileId="4" StartOffset="716"/>
+</LocList>
+<RootTerm CovItemId="C2" CovItemPrefix="sticks.Main.java" Intrnl_Id="183">
+<BasicBoolTerm Intrnl_Id="184">
+<LocList>
+<Loc EndOffset="740" SrcFileId="4" StartOffset="730"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</LoopStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="437" HierarchyLvlTypeId="11" Intrnl_Id="185" Name="runAutomaticallyWithStaticInput">
+<Header>
+<Loc EndOffset="1098" SrcFileId="4" StartOffset="1045"/>
+</Header>
+<LocList>
+<Loc EndOffset="1380" SrcFileId="4" StartOffset="1045"/>
+</LocList>
+<StmntSeq Intrnl_Id="186">
+<LocList>
+<Loc EndOffset="1202" SrcFileId="4" StartOffset="1175"/>
+<Loc EndOffset="1221" SrcFileId="4" StartOffset="1206"/>
+<Loc EndOffset="1302" SrcFileId="4" StartOffset="1249"/>
+<Loc EndOffset="1318" SrcFileId="4" StartOffset="1306"/>
+</LocList>
+<BasicStmnt CovItemId="S19" CovItemPrefix="sticks.Main.java" Intrnl_Id="187">
+<LocList>
+<Loc EndOffset="1202" SrcFileId="4" StartOffset="1175"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S20" CovItemPrefix="sticks.Main.java" Intrnl_Id="188">
+<LocList>
+<Loc EndOffset="1221" SrcFileId="4" StartOffset="1206"/>
+</LocList>
+</BasicStmnt>
+<LoopStmnt CovItemId="S21" CovItemPrefix="sticks.Main.java" Intrnl_Id="189" MltplExecId="L4-2" MltplExecPrefix="sticks.Main.java" NvrExecId="L4-0" NvrExecPrefix="sticks.Main.java" OnceExecutedId="L4-1" OnceExecutedPrefix="sticks.Main.java" OptBodyExec="true">
+<StmntSeq Intrnl_Id="190">
+<LocList>
+<Loc EndOffset="1302" SrcFileId="4" StartOffset="1278"/>
+</LocList>
+<BasicStmnt CovItemId="S22" CovItemPrefix="sticks.Main.java" Intrnl_Id="191">
+<LocList>
+<Loc EndOffset="1302" SrcFileId="4" StartOffset="1278"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+<Keyword EndOffset="1252" SrcFileId="4" StartOffset="1249"/>
+<LocList>
+<Loc EndOffset="1302" SrcFileId="4" StartOffset="1249"/>
+</LocList>
+<RootTerm CovItemId="C4" CovItemPrefix="sticks.Main.java" Intrnl_Id="192">
+<BasicBoolTerm Intrnl_Id="193">
+<LocList>
+<Loc EndOffset="1267" SrcFileId="4" StartOffset="1263"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</LoopStmnt>
+<BasicStmnt CovItemId="S23" CovItemPrefix="sticks.Main.java" Intrnl_Id="194">
+<LocList>
+<Loc EndOffset="1318" SrcFileId="4" StartOffset="1306"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="438" HierarchyLvlTypeId="11" Intrnl_Id="195" Name="runStaticInput">
+<Header>
+<Loc EndOffset="1443" SrcFileId="4" StartOffset="1386"/>
+</Header>
+<LocList>
+<Loc EndOffset="1573" SrcFileId="4" StartOffset="1386"/>
+</LocList>
+<StmntSeq Intrnl_Id="196">
+<LocList>
+<Loc EndOffset="1498" SrcFileId="4" StartOffset="1449"/>
+<Loc EndOffset="1553" SrcFileId="4" StartOffset="1502"/>
+<Loc EndOffset="1569" SrcFileId="4" StartOffset="1557"/>
+</LocList>
+<BasicStmnt CovItemId="S24" CovItemPrefix="sticks.Main.java" Intrnl_Id="197">
+<LocList>
+<Loc EndOffset="1498" SrcFileId="4" StartOffset="1449"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S25" CovItemPrefix="sticks.Main.java" Intrnl_Id="198">
+<LocList>
+<Loc EndOffset="1553" SrcFileId="4" StartOffset="1502"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S26" CovItemPrefix="sticks.Main.java" Intrnl_Id="199">
+<LocList>
+<Loc EndOffset="1569" SrcFileId="4" StartOffset="1557"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="439" HierarchyLvlTypeId="11" Intrnl_Id="200" Name="testGameComponents">
+<Header>
+<Loc EndOffset="1619" SrcFileId="4" StartOffset="1579"/>
+</Header>
+<LocList>
+<Loc EndOffset="1719" SrcFileId="4" StartOffset="1579"/>
+</LocList>
+<StmntSeq Intrnl_Id="201">
+<LocList>
+<Loc EndOffset="1653" SrcFileId="4" StartOffset="1625"/>
+<Loc EndOffset="1674" SrcFileId="4" StartOffset="1657"/>
+<Loc EndOffset="1691" SrcFileId="4" StartOffset="1678"/>
+<Loc EndOffset="1715" SrcFileId="4" StartOffset="1695"/>
+</LocList>
+<BasicStmnt CovItemId="S27" CovItemPrefix="sticks.Main.java" Intrnl_Id="202">
+<LocList>
+<Loc EndOffset="1653" SrcFileId="4" StartOffset="1625"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S28" CovItemPrefix="sticks.Main.java" Intrnl_Id="203">
+<LocList>
+<Loc EndOffset="1674" SrcFileId="4" StartOffset="1657"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S29" CovItemPrefix="sticks.Main.java" Intrnl_Id="204">
+<LocList>
+<Loc EndOffset="1691" SrcFileId="4" StartOffset="1678"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S30" CovItemPrefix="sticks.Main.java" Intrnl_Id="205">
+<LocList>
+<Loc EndOffset="1715" SrcFileId="4" StartOffset="1695"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="440" HierarchyLvlTypeId="11" Intrnl_Id="206" Name="testStickList">
+<Header>
+<Loc EndOffset="1760" SrcFileId="4" StartOffset="1725"/>
+</Header>
+<LocList>
+<Loc EndOffset="2276" SrcFileId="4" StartOffset="1725"/>
+</LocList>
+<StmntSeq Intrnl_Id="207">
+<LocList>
+<Loc EndOffset="1803" SrcFileId="4" StartOffset="1770"/>
+<Loc EndOffset="1820" SrcFileId="4" StartOffset="1807"/>
+<Loc EndOffset="1840" SrcFileId="4" StartOffset="1824"/>
+<Loc EndOffset="1856" SrcFileId="4" StartOffset="1844"/>
+<Loc EndOffset="1882" SrcFileId="4" StartOffset="1860"/>
+<Loc EndOffset="1903" SrcFileId="4" StartOffset="1890"/>
+<Loc EndOffset="1923" SrcFileId="4" StartOffset="1907"/>
+<Loc EndOffset="1939" SrcFileId="4" StartOffset="1927"/>
+<Loc EndOffset="1965" SrcFileId="4" StartOffset="1943"/>
+<Loc EndOffset="1991" SrcFileId="4" StartOffset="1969"/>
+<Loc EndOffset="2010" SrcFileId="4" StartOffset="1999"/>
+<Loc EndOffset="2026" SrcFileId="4" StartOffset="2014"/>
+<Loc EndOffset="2042" SrcFileId="4" StartOffset="2030"/>
+<Loc EndOffset="2058" SrcFileId="4" StartOffset="2046"/>
+<Loc EndOffset="2075" SrcFileId="4" StartOffset="2062"/>
+<Loc EndOffset="2091" SrcFileId="4" StartOffset="2079"/>
+<Loc EndOffset="2107" SrcFileId="4" StartOffset="2095"/>
+<Loc EndOffset="2123" SrcFileId="4" StartOffset="2111"/>
+<Loc EndOffset="2139" SrcFileId="4" StartOffset="2127"/>
+<Loc EndOffset="2156" SrcFileId="4" StartOffset="2143"/>
+<Loc EndOffset="2172" SrcFileId="4" StartOffset="2160"/>
+<Loc EndOffset="2191" SrcFileId="4" StartOffset="2176"/>
+<Loc EndOffset="2210" SrcFileId="4" StartOffset="2195"/>
+<Loc EndOffset="2229" SrcFileId="4" StartOffset="2214"/>
+<Loc EndOffset="2249" SrcFileId="4" StartOffset="2233"/>
+<Loc EndOffset="2268" SrcFileId="4" StartOffset="2253"/>
+</LocList>
+<BasicStmnt CovItemId="S31" CovItemPrefix="sticks.Main.java" Intrnl_Id="208">
+<LocList>
+<Loc EndOffset="1803" SrcFileId="4" StartOffset="1770"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S32" CovItemPrefix="sticks.Main.java" Intrnl_Id="209">
+<LocList>
+<Loc EndOffset="1820" SrcFileId="4" StartOffset="1807"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S33" CovItemPrefix="sticks.Main.java" Intrnl_Id="210">
+<LocList>
+<Loc EndOffset="1840" SrcFileId="4" StartOffset="1824"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S34" CovItemPrefix="sticks.Main.java" Intrnl_Id="211">
+<LocList>
+<Loc EndOffset="1856" SrcFileId="4" StartOffset="1844"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S35" CovItemPrefix="sticks.Main.java" Intrnl_Id="212">
+<LocList>
+<Loc EndOffset="1882" SrcFileId="4" StartOffset="1860"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S36" CovItemPrefix="sticks.Main.java" Intrnl_Id="213">
+<LocList>
+<Loc EndOffset="1903" SrcFileId="4" StartOffset="1890"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S37" CovItemPrefix="sticks.Main.java" Intrnl_Id="214">
+<LocList>
+<Loc EndOffset="1923" SrcFileId="4" StartOffset="1907"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S38" CovItemPrefix="sticks.Main.java" Intrnl_Id="215">
+<LocList>
+<Loc EndOffset="1939" SrcFileId="4" StartOffset="1927"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S39" CovItemPrefix="sticks.Main.java" Intrnl_Id="216">
+<LocList>
+<Loc EndOffset="1965" SrcFileId="4" StartOffset="1943"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S40" CovItemPrefix="sticks.Main.java" Intrnl_Id="217">
+<LocList>
+<Loc EndOffset="1991" SrcFileId="4" StartOffset="1969"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S41" CovItemPrefix="sticks.Main.java" Intrnl_Id="218">
+<LocList>
+<Loc EndOffset="2010" SrcFileId="4" StartOffset="1999"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S42" CovItemPrefix="sticks.Main.java" Intrnl_Id="219">
+<LocList>
+<Loc EndOffset="2026" SrcFileId="4" StartOffset="2014"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S43" CovItemPrefix="sticks.Main.java" Intrnl_Id="220">
+<LocList>
+<Loc EndOffset="2042" SrcFileId="4" StartOffset="2030"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S44" CovItemPrefix="sticks.Main.java" Intrnl_Id="221">
+<LocList>
+<Loc EndOffset="2058" SrcFileId="4" StartOffset="2046"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S45" CovItemPrefix="sticks.Main.java" Intrnl_Id="222">
+<LocList>
+<Loc EndOffset="2075" SrcFileId="4" StartOffset="2062"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S46" CovItemPrefix="sticks.Main.java" Intrnl_Id="223">
+<LocList>
+<Loc EndOffset="2091" SrcFileId="4" StartOffset="2079"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S47" CovItemPrefix="sticks.Main.java" Intrnl_Id="224">
+<LocList>
+<Loc EndOffset="2107" SrcFileId="4" StartOffset="2095"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S48" CovItemPrefix="sticks.Main.java" Intrnl_Id="225">
+<LocList>
+<Loc EndOffset="2123" SrcFileId="4" StartOffset="2111"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S49" CovItemPrefix="sticks.Main.java" Intrnl_Id="226">
+<LocList>
+<Loc EndOffset="2139" SrcFileId="4" StartOffset="2127"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S50" CovItemPrefix="sticks.Main.java" Intrnl_Id="227">
+<LocList>
+<Loc EndOffset="2156" SrcFileId="4" StartOffset="2143"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S51" CovItemPrefix="sticks.Main.java" Intrnl_Id="228">
+<LocList>
+<Loc EndOffset="2172" SrcFileId="4" StartOffset="2160"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S52" CovItemPrefix="sticks.Main.java" Intrnl_Id="229">
+<LocList>
+<Loc EndOffset="2191" SrcFileId="4" StartOffset="2176"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S53" CovItemPrefix="sticks.Main.java" Intrnl_Id="230">
+<LocList>
+<Loc EndOffset="2210" SrcFileId="4" StartOffset="2195"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S54" CovItemPrefix="sticks.Main.java" Intrnl_Id="231">
+<LocList>
+<Loc EndOffset="2229" SrcFileId="4" StartOffset="2214"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S55" CovItemPrefix="sticks.Main.java" Intrnl_Id="232">
+<LocList>
+<Loc EndOffset="2249" SrcFileId="4" StartOffset="2233"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S56" CovItemPrefix="sticks.Main.java" Intrnl_Id="233">
+<LocList>
+<Loc EndOffset="2268" SrcFileId="4" StartOffset="2253"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="441" HierarchyLvlTypeId="11" Intrnl_Id="234" Name="testAI">
+<Header>
+<Loc EndOffset="2310" SrcFileId="4" StartOffset="2282"/>
+</Header>
+<LocList>
+<Loc EndOffset="2372" SrcFileId="4" StartOffset="2282"/>
+</LocList>
+<StmntSeq Intrnl_Id="235">
+<LocList>
+<Loc EndOffset="2333" SrcFileId="4" StartOffset="2316"/>
+<Loc EndOffset="2351" SrcFileId="4" StartOffset="2337"/>
+<Loc EndOffset="2368" SrcFileId="4" StartOffset="2355"/>
+</LocList>
+<BasicStmnt CovItemId="S57" CovItemPrefix="sticks.Main.java" Intrnl_Id="236">
+<LocList>
+<Loc EndOffset="2333" SrcFileId="4" StartOffset="2316"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S58" CovItemPrefix="sticks.Main.java" Intrnl_Id="237">
+<LocList>
+<Loc EndOffset="2351" SrcFileId="4" StartOffset="2337"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S59" CovItemPrefix="sticks.Main.java" Intrnl_Id="238">
+<LocList>
+<Loc EndOffset="2368" SrcFileId="4" StartOffset="2355"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="442" HierarchyLvlTypeId="11" Intrnl_Id="239" Name="initGame">
+<Header>
+<Loc EndOffset="2420" SrcFileId="4" StartOffset="2378"/>
+</Header>
+<LocList>
+<Loc EndOffset="2672" SrcFileId="4" StartOffset="2378"/>
+</LocList>
+<StmntSeq Intrnl_Id="240">
+<LocList>
+<Loc EndOffset="2459" SrcFileId="4" StartOffset="2426"/>
+<Loc EndOffset="2543" SrcFileId="4" StartOffset="2463"/>
+<Loc EndOffset="2668" SrcFileId="4" StartOffset="2547"/>
+</LocList>
+<BasicStmnt CovItemId="S60" CovItemPrefix="sticks.Main.java" Intrnl_Id="241">
+<LocList>
+<Loc EndOffset="2459" SrcFileId="4" StartOffset="2426"/>
+</LocList>
+</BasicStmnt>
+<LoopStmnt CovItemId="S61" CovItemPrefix="sticks.Main.java" Intrnl_Id="242" MltplExecId="L5-2" MltplExecPrefix="sticks.Main.java" NvrExecId="L5-0" NvrExecPrefix="sticks.Main.java" OnceExecutedId="L5-1" OnceExecutedPrefix="sticks.Main.java" OptBodyExec="true">
+<StmntSeq Intrnl_Id="243">
+<LocList>
+<Loc EndOffset="2543" SrcFileId="4" StartOffset="2521"/>
+</LocList>
+<BasicStmnt CovItemId="S62" CovItemPrefix="sticks.Main.java" Intrnl_Id="244">
+<LocList>
+<Loc EndOffset="2543" SrcFileId="4" StartOffset="2521"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+<Keyword EndOffset="2466" SrcFileId="4" StartOffset="2463"/>
+<LocList>
+<Loc EndOffset="2543" SrcFileId="4" StartOffset="2463"/>
+</LocList>
+<RootTerm CovItemId="C5" CovItemPrefix="sticks.Main.java" Intrnl_Id="245">
+<BasicBoolTerm Intrnl_Id="246">
+<LocList>
+<Loc EndOffset="2481" SrcFileId="4" StartOffset="2477"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</LoopStmnt>
+<CondStmnt CovItemId="S63" CovItemPrefix="sticks.Main.java" Intrnl_Id="247">
+<Branch CovItemId="B1" CovItemPrefix="sticks.Main.java" Implct="false" Intrnl_Id="248">
+<Cond/>
+<LocList>
+<Loc EndOffset="2613" SrcFileId="4" StartOffset="2561"/>
+</LocList>
+<StmntSeq Intrnl_Id="249">
+<LocList>
+<Loc EndOffset="2613" SrcFileId="4" StartOffset="2561"/>
+</LocList>
+<BasicStmnt CovItemId="S64" CovItemPrefix="sticks.Main.java" Intrnl_Id="250">
+<LocList>
+<Loc EndOffset="2613" SrcFileId="4" StartOffset="2561"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B2" CovItemPrefix="sticks.Main.java" Implct="false" Intrnl_Id="251">
+<Cond>
+<Loc EndOffset="2621" SrcFileId="4" StartOffset="2617"/>
+</Cond>
+<LocList>
+<Loc EndOffset="2668" SrcFileId="4" StartOffset="2622"/>
+</LocList>
+<StmntSeq Intrnl_Id="252">
+<LocList>
+<Loc EndOffset="2668" SrcFileId="4" StartOffset="2622"/>
+</LocList>
+<BasicStmnt CovItemId="S65" CovItemPrefix="sticks.Main.java" Intrnl_Id="253">
+<LocList>
+<Loc EndOffset="2668" SrcFileId="4" StartOffset="2622"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="2549" SrcFileId="4" StartOffset="2547"/>
+<LocList>
+<Loc EndOffset="2668" SrcFileId="4" StartOffset="2547"/>
+</LocList>
+<RootTerm CovItemId="C6" CovItemPrefix="sticks.Main.java" Intrnl_Id="254">
+<BasicBoolTerm Intrnl_Id="255">
+<LocList>
+<Loc EndOffset="2555" SrcFileId="4" StartOffset="2551"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</CondStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="443" HierarchyLvlTypeId="11" Intrnl_Id="256" Name="randomNumber">
+<Header>
+<Loc EndOffset="2729" SrcFileId="4" StartOffset="2678"/>
+</Header>
+<LocList>
+<Loc EndOffset="2804" SrcFileId="4" StartOffset="2678"/>
+</LocList>
+<StmntSeq Intrnl_Id="257">
+<LocList>
+<Loc EndOffset="2762" SrcFileId="4" StartOffset="2735"/>
+<Loc EndOffset="2800" SrcFileId="4" StartOffset="2766"/>
+</LocList>
+<BasicStmnt CovItemId="S66" CovItemPrefix="sticks.Main.java" Intrnl_Id="258">
+<LocList>
+<Loc EndOffset="2762" SrcFileId="4" StartOffset="2735"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S67" CovItemPrefix="sticks.Main.java" Intrnl_Id="259">
+<LocList>
+<Loc EndOffset="2800" SrcFileId="4" StartOffset="2766"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="455" HierarchyLvlTypeId="12" Intrnl_Id="260" Name="Game">
+<Header>
+<Loc EndOffset="36" SrcFileId="5" StartOffset="19"/>
+</Header>
+<LocList>
+<Loc EndOffset="1572" SrcFileId="5" StartOffset="19"/>
+</LocList>
+<StmntSeq Intrnl_Id="261">
+<LocList>
+<Loc EndOffset="141" SrcFileId="5" StartOffset="112"/>
+</LocList>
+<BasicStmnt CovItemId="S1" CovItemPrefix="sticks.Game.java" Intrnl_Id="262">
+<LocList>
+<Loc EndOffset="141" SrcFileId="5" StartOffset="112"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+<HierarchyLvl HierarchyLvlId="445" HierarchyLvlTypeId="11" Intrnl_Id="263" Name="Game">
+<Header>
+<Loc EndOffset="196" SrcFileId="5" StartOffset="147"/>
+</Header>
+<LocList>
+<Loc EndOffset="265" SrcFileId="5" StartOffset="147"/>
+</LocList>
+<StmntSeq Intrnl_Id="264">
+<LocList>
+<Loc EndOffset="219" SrcFileId="5" StartOffset="202"/>
+<Loc EndOffset="244" SrcFileId="5" StartOffset="223"/>
+<Loc EndOffset="261" SrcFileId="5" StartOffset="248"/>
+</LocList>
+<BasicStmnt CovItemId="S2" CovItemPrefix="sticks.Game.java" Intrnl_Id="265">
+<LocList>
+<Loc EndOffset="219" SrcFileId="5" StartOffset="202"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S3" CovItemPrefix="sticks.Game.java" Intrnl_Id="266">
+<LocList>
+<Loc EndOffset="244" SrcFileId="5" StartOffset="223"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S4" CovItemPrefix="sticks.Game.java" Intrnl_Id="267">
+<LocList>
+<Loc EndOffset="261" SrcFileId="5" StartOffset="248"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="446" HierarchyLvlTypeId="11" Intrnl_Id="268" Name="restart">
+<Header>
+<Loc EndOffset="292" SrcFileId="5" StartOffset="271"/>
+</Header>
+<LocList>
+<Loc EndOffset="354" SrcFileId="5" StartOffset="271"/>
+</LocList>
+<StmntSeq Intrnl_Id="269">
+<LocList>
+<Loc EndOffset="350" SrcFileId="5" StartOffset="298"/>
+</LocList>
+<CondStmnt CovItemId="S5" CovItemPrefix="sticks.Game.java" Intrnl_Id="270">
+<Branch CovItemId="B1" CovItemPrefix="sticks.Game.java" Implct="false" Intrnl_Id="271">
+<Cond/>
+<LocList>
+<Loc EndOffset="350" SrcFileId="5" StartOffset="308"/>
+</LocList>
+<StmntSeq Intrnl_Id="272">
+<LocList>
+<Loc EndOffset="327" SrcFileId="5" StartOffset="314"/>
+<Loc EndOffset="345" SrcFileId="5" StartOffset="332"/>
+</LocList>
+<BasicStmnt CovItemId="S6" CovItemPrefix="sticks.Game.java" Intrnl_Id="273">
+<LocList>
+<Loc EndOffset="327" SrcFileId="5" StartOffset="314"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S7" CovItemPrefix="sticks.Game.java" Intrnl_Id="274">
+<LocList>
+<Loc EndOffset="345" SrcFileId="5" StartOffset="332"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B2" CovItemPrefix="sticks.Game.java" Implct="true" Intrnl_Id="275">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="276">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="300" SrcFileId="5" StartOffset="298"/>
+<LocList>
+<Loc EndOffset="350" SrcFileId="5" StartOffset="298"/>
+</LocList>
+<RootTerm CovItemId="C1" CovItemPrefix="sticks.Game.java" Intrnl_Id="277">
+<BasicBoolTerm Intrnl_Id="278">
+<LocList>
+<Loc EndOffset="306" SrcFileId="5" StartOffset="302"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</CondStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="447" HierarchyLvlTypeId="11" Intrnl_Id="279" Name="play">
+<Header>
+<Loc EndOffset="378" SrcFileId="5" StartOffset="360"/>
+</Header>
+<LocList>
+<Loc EndOffset="815" SrcFileId="5" StartOffset="360"/>
+</LocList>
+<StmntSeq Intrnl_Id="280">
+<LocList>
+<Loc EndOffset="405" SrcFileId="5" StartOffset="384"/>
+<Loc EndOffset="451" SrcFileId="5" StartOffset="425"/>
+<Loc EndOffset="497" SrcFileId="5" StartOffset="455"/>
+<Loc EndOffset="621" SrcFileId="5" StartOffset="501"/>
+<Loc EndOffset="641" SrcFileId="5" StartOffset="625"/>
+<Loc EndOffset="682" SrcFileId="5" StartOffset="645"/>
+<Loc EndOffset="723" SrcFileId="5" StartOffset="698"/>
+<Loc EndOffset="747" SrcFileId="5" StartOffset="727"/>
+<Loc EndOffset="789" SrcFileId="5" StartOffset="751"/>
+<Loc EndOffset="811" SrcFileId="5" StartOffset="797"/>
+</LocList>
+<CondStmnt CovItemId="S8" CovItemPrefix="sticks.Game.java" Intrnl_Id="281">
+<Branch CovItemId="B3" CovItemPrefix="sticks.Game.java" Implct="false" Intrnl_Id="282">
+<Cond/>
+<LocList>
+<Loc EndOffset="405" SrcFileId="5" StartOffset="398"/>
+</LocList>
+<StmntSeq Intrnl_Id="283">
+<LocList>
+<Loc EndOffset="405" SrcFileId="5" StartOffset="398"/>
+</LocList>
+<BasicStmnt CovItemId="S9" CovItemPrefix="sticks.Game.java" Intrnl_Id="284">
+<LocList>
+<Loc EndOffset="405" SrcFileId="5" StartOffset="398"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B4" CovItemPrefix="sticks.Game.java" Implct="true" Intrnl_Id="285">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="286">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="386" SrcFileId="5" StartOffset="384"/>
+<LocList>
+<Loc EndOffset="405" SrcFileId="5" StartOffset="384"/>
+</LocList>
+<RootTerm CovItemId="C2" CovItemPrefix="sticks.Game.java" Intrnl_Id="287">
+<BasicBoolTerm Intrnl_Id="288">
+<LocList>
+<Loc EndOffset="392" SrcFileId="5" StartOffset="388"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</CondStmnt>
+<BasicStmnt CovItemId="S10" CovItemPrefix="sticks.Game.java" Intrnl_Id="289">
+<LocList>
+<Loc EndOffset="451" SrcFileId="5" StartOffset="425"/>
+</LocList>
+</BasicStmnt>
+<CondStmnt CovItemId="S11" CovItemPrefix="sticks.Game.java" Intrnl_Id="290">
+<Branch CovItemId="B5" CovItemPrefix="sticks.Game.java" Implct="false" Intrnl_Id="291">
+<Cond/>
+<LocList>
+<Loc EndOffset="497" SrcFileId="5" StartOffset="490"/>
+</LocList>
+<StmntSeq Intrnl_Id="292">
+<LocList>
+<Loc EndOffset="497" SrcFileId="5" StartOffset="490"/>
+</LocList>
+<BasicStmnt CovItemId="S12" CovItemPrefix="sticks.Game.java" Intrnl_Id="293">
+<LocList>
+<Loc EndOffset="497" SrcFileId="5" StartOffset="490"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B6" CovItemPrefix="sticks.Game.java" Implct="true" Intrnl_Id="294">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="295">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="457" SrcFileId="5" StartOffset="455"/>
+<LocList>
+<Loc EndOffset="497" SrcFileId="5" StartOffset="455"/>
+</LocList>
+<RootTerm CovItemId="C3" CovItemPrefix="sticks.Game.java" Intrnl_Id="296">
+<OpTerm BooleanOpId="9" Intrnl_Id="297">
+<BasicBoolTerm Intrnl_Id="298">
+<LocList>
+<Loc EndOffset="484" SrcFileId="5" StartOffset="460"/>
+</LocList>
+</BasicBoolTerm>
+<LocList>
+<Loc EndOffset="460" SrcFileId="5" StartOffset="459"/>
+</LocList>
+</OpTerm>
+</RootTerm>
+</CondStmnt>
+<CondStmnt CovItemId="S13" CovItemPrefix="sticks.Game.java" Intrnl_Id="299">
+<Branch CovItemId="B7" CovItemPrefix="sticks.Game.java" Implct="false" Intrnl_Id="300">
+<Cond/>
+<LocList>
+<Loc EndOffset="621" SrcFileId="5" StartOffset="517"/>
+</LocList>
+<StmntSeq Intrnl_Id="301">
+<LocList>
+<Loc EndOffset="587" SrcFileId="5" StartOffset="523"/>
+<Loc EndOffset="604" SrcFileId="5" StartOffset="592"/>
+<Loc EndOffset="616" SrcFileId="5" StartOffset="609"/>
+</LocList>
+<BasicStmnt CovItemId="S14" CovItemPrefix="sticks.Game.java" Intrnl_Id="302">
+<LocList>
+<Loc EndOffset="587" SrcFileId="5" StartOffset="523"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S15" CovItemPrefix="sticks.Game.java" Intrnl_Id="303">
+<LocList>
+<Loc EndOffset="604" SrcFileId="5" StartOffset="592"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S16" CovItemPrefix="sticks.Game.java" Intrnl_Id="304">
+<LocList>
+<Loc EndOffset="616" SrcFileId="5" StartOffset="609"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B8" CovItemPrefix="sticks.Game.java" Implct="true" Intrnl_Id="305">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="306">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="503" SrcFileId="5" StartOffset="501"/>
+<LocList>
+<Loc EndOffset="621" SrcFileId="5" StartOffset="501"/>
+</LocList>
+<RootTerm CovItemId="C4" CovItemPrefix="sticks.Game.java" Intrnl_Id="307">
+<BasicBoolTerm Intrnl_Id="308">
+<LocList>
+<Loc EndOffset="515" SrcFileId="5" StartOffset="505"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</CondStmnt>
+<BasicStmnt CovItemId="S17" CovItemPrefix="sticks.Game.java" Intrnl_Id="309">
+<LocList>
+<Loc EndOffset="641" SrcFileId="5" StartOffset="625"/>
+</LocList>
+</BasicStmnt>
+<CondStmnt CovItemId="S18" CovItemPrefix="sticks.Game.java" Intrnl_Id="310">
+<Branch CovItemId="B9" CovItemPrefix="sticks.Game.java" Implct="false" Intrnl_Id="311">
+<Cond/>
+<LocList>
+<Loc EndOffset="682" SrcFileId="5" StartOffset="675"/>
+</LocList>
+<StmntSeq Intrnl_Id="312">
+<LocList>
+<Loc EndOffset="682" SrcFileId="5" StartOffset="675"/>
+</LocList>
+<BasicStmnt CovItemId="S19" CovItemPrefix="sticks.Game.java" Intrnl_Id="313">
+<LocList>
+<Loc EndOffset="682" SrcFileId="5" StartOffset="675"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B10" CovItemPrefix="sticks.Game.java" Implct="true" Intrnl_Id="314">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="315">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="647" SrcFileId="5" StartOffset="645"/>
+<LocList>
+<Loc EndOffset="682" SrcFileId="5" StartOffset="645"/>
+</LocList>
+<RootTerm CovItemId="C5" CovItemPrefix="sticks.Game.java" Intrnl_Id="316">
+<BasicBoolTerm Intrnl_Id="317">
+<LocList>
+<Loc EndOffset="669" SrcFileId="5" StartOffset="649"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</CondStmnt>
+<BasicStmnt CovItemId="S20" CovItemPrefix="sticks.Game.java" Intrnl_Id="318">
+<LocList>
+<Loc EndOffset="723" SrcFileId="5" StartOffset="698"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S21" CovItemPrefix="sticks.Game.java" Intrnl_Id="319">
+<LocList>
+<Loc EndOffset="747" SrcFileId="5" StartOffset="727"/>
+</LocList>
+</BasicStmnt>
+<CondStmnt CovItemId="S22" CovItemPrefix="sticks.Game.java" Intrnl_Id="320">
+<Branch CovItemId="B11" CovItemPrefix="sticks.Game.java" Implct="false" Intrnl_Id="321">
+<Cond/>
+<LocList>
+<Loc EndOffset="789" SrcFileId="5" StartOffset="782"/>
+</LocList>
+<StmntSeq Intrnl_Id="322">
+<LocList>
+<Loc EndOffset="789" SrcFileId="5" StartOffset="782"/>
+</LocList>
+<BasicStmnt CovItemId="S23" CovItemPrefix="sticks.Game.java" Intrnl_Id="323">
+<LocList>
+<Loc EndOffset="789" SrcFileId="5" StartOffset="782"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B12" CovItemPrefix="sticks.Game.java" Implct="true" Intrnl_Id="324">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="325">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="753" SrcFileId="5" StartOffset="751"/>
+<LocList>
+<Loc EndOffset="789" SrcFileId="5" StartOffset="751"/>
+</LocList>
+<RootTerm CovItemId="C6" CovItemPrefix="sticks.Game.java" Intrnl_Id="326">
+<BasicBoolTerm Intrnl_Id="327">
+<LocList>
+<Loc EndOffset="776" SrcFileId="5" StartOffset="755"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</CondStmnt>
+<BasicStmnt CovItemId="S24" CovItemPrefix="sticks.Game.java" Intrnl_Id="328">
+<LocList>
+<Loc EndOffset="811" SrcFileId="5" StartOffset="797"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="448" HierarchyLvlTypeId="11" Intrnl_Id="329" Name="isDone">
+<Header>
+<Loc EndOffset="844" SrcFileId="5" StartOffset="821"/>
+</Header>
+<LocList>
+<Loc EndOffset="865" SrcFileId="5" StartOffset="821"/>
+</LocList>
+<StmntSeq Intrnl_Id="330">
+<LocList>
+<Loc EndOffset="863" SrcFileId="5" StartOffset="851"/>
+</LocList>
+<BasicStmnt CovItemId="S25" CovItemPrefix="sticks.Game.java" Intrnl_Id="331">
+<LocList>
+<Loc EndOffset="863" SrcFileId="5" StartOffset="851"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="449" HierarchyLvlTypeId="11" Intrnl_Id="332" Name="getPlayer">
+<Header>
+<Loc EndOffset="893" SrcFileId="5" StartOffset="868"/>
+</Header>
+<LocList>
+<Loc EndOffset="915" SrcFileId="5" StartOffset="868"/>
+</LocList>
+<StmntSeq Intrnl_Id="333">
+<LocList>
+<Loc EndOffset="913" SrcFileId="5" StartOffset="899"/>
+</LocList>
+<BasicStmnt CovItemId="S26" CovItemPrefix="sticks.Game.java" Intrnl_Id="334">
+<LocList>
+<Loc EndOffset="913" SrcFileId="5" StartOffset="899"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="450" HierarchyLvlTypeId="11" Intrnl_Id="335" Name="getAI">
+<Header>
+<Loc EndOffset="939" SrcFileId="5" StartOffset="918"/>
+</Header>
+<LocList>
+<Loc EndOffset="958" SrcFileId="5" StartOffset="918"/>
+</LocList>
+<StmntSeq Intrnl_Id="336">
+<LocList>
+<Loc EndOffset="956" SrcFileId="5" StartOffset="946"/>
+</LocList>
+<BasicStmnt CovItemId="S27" CovItemPrefix="sticks.Game.java" Intrnl_Id="337">
+<LocList>
+<Loc EndOffset="956" SrcFileId="5" StartOffset="946"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="451" HierarchyLvlTypeId="11" Intrnl_Id="338" Name="getStickList">
+<Header>
+<Loc EndOffset="992" SrcFileId="5" StartOffset="961"/>
+</Header>
+<LocList>
+<Loc EndOffset="1011" SrcFileId="5" StartOffset="961"/>
+</LocList>
+<StmntSeq Intrnl_Id="339">
+<LocList>
+<Loc EndOffset="1009" SrcFileId="5" StartOffset="997"/>
+</LocList>
+<BasicStmnt CovItemId="S28" CovItemPrefix="sticks.Game.java" Intrnl_Id="340">
+<LocList>
+<Loc EndOffset="1009" SrcFileId="5" StartOffset="997"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="452" HierarchyLvlTypeId="11" Intrnl_Id="341" Name="isValidDraw">
+<Header>
+<Loc EndOffset="1079" SrcFileId="5" StartOffset="1023"/>
+</Header>
+<LocList>
+<Loc EndOffset="1152" SrcFileId="5" StartOffset="1023"/>
+</LocList>
+<StmntSeq Intrnl_Id="342">
+<LocList>
+<Loc EndOffset="1148" SrcFileId="5" StartOffset="1085"/>
+</LocList>
+<BasicStmnt CovItemId="S29" CovItemPrefix="sticks.Game.java" Intrnl_Id="343">
+<LocList>
+<Loc EndOffset="1148" SrcFileId="5" StartOffset="1085"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="453" HierarchyLvlTypeId="11" Intrnl_Id="344" Name="checkEndOfGame">
+<Header>
+<Loc EndOffset="1209" SrcFileId="5" StartOffset="1158"/>
+</Header>
+<LocList>
+<Loc EndOffset="1433" SrcFileId="5" StartOffset="1158"/>
+</LocList>
+<StmntSeq Intrnl_Id="345">
+<LocList>
+<Loc EndOffset="1413" SrcFileId="5" StartOffset="1215"/>
+<Loc EndOffset="1429" SrcFileId="5" StartOffset="1417"/>
+</LocList>
+<CondStmnt CovItemId="S30" CovItemPrefix="sticks.Game.java" Intrnl_Id="346">
+<Branch CovItemId="B13" CovItemPrefix="sticks.Game.java" Implct="false" Intrnl_Id="347">
+<Cond/>
+<LocList>
+<Loc EndOffset="1413" SrcFileId="5" StartOffset="1239"/>
+</LocList>
+<StmntSeq Intrnl_Id="348">
+<LocList>
+<Loc EndOffset="1259" SrcFileId="5" StartOffset="1245"/>
+<Loc EndOffset="1276" SrcFileId="5" StartOffset="1264"/>
+<Loc EndOffset="1408" SrcFileId="5" StartOffset="1281"/>
+</LocList>
+<BasicStmnt CovItemId="S31" CovItemPrefix="sticks.Game.java" Intrnl_Id="349">
+<LocList>
+<Loc EndOffset="1259" SrcFileId="5" StartOffset="1245"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S32" CovItemPrefix="sticks.Game.java" Intrnl_Id="350">
+<LocList>
+<Loc EndOffset="1276" SrcFileId="5" StartOffset="1264"/>
+</LocList>
+</BasicStmnt>
+<CondStmnt CovItemId="S33" CovItemPrefix="sticks.Game.java" Intrnl_Id="351">
+<Branch CovItemId="B15" CovItemPrefix="sticks.Game.java" Implct="false" Intrnl_Id="352">
+<Cond/>
+<LocList>
+<Loc EndOffset="1351" SrcFileId="5" StartOffset="1304"/>
+</LocList>
+<StmntSeq Intrnl_Id="353">
+<LocList>
+<Loc EndOffset="1351" SrcFileId="5" StartOffset="1304"/>
+</LocList>
+<BasicStmnt CovItemId="S34" CovItemPrefix="sticks.Game.java" Intrnl_Id="354">
+<LocList>
+<Loc EndOffset="1351" SrcFileId="5" StartOffset="1304"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B16" CovItemPrefix="sticks.Game.java" Implct="false" Intrnl_Id="355">
+<Cond>
+<Loc EndOffset="1360" SrcFileId="5" StartOffset="1356"/>
+</Cond>
+<LocList>
+<Loc EndOffset="1408" SrcFileId="5" StartOffset="1361"/>
+</LocList>
+<StmntSeq Intrnl_Id="356">
+<LocList>
+<Loc EndOffset="1408" SrcFileId="5" StartOffset="1361"/>
+</LocList>
+<BasicStmnt CovItemId="S35" CovItemPrefix="sticks.Game.java" Intrnl_Id="357">
+<LocList>
+<Loc EndOffset="1408" SrcFileId="5" StartOffset="1361"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="1283" SrcFileId="5" StartOffset="1281"/>
+<LocList>
+<Loc EndOffset="1408" SrcFileId="5" StartOffset="1281"/>
+</LocList>
+<RootTerm CovItemId="C8" CovItemPrefix="sticks.Game.java" Intrnl_Id="358">
+<OpTerm BooleanOpId="9" Intrnl_Id="359">
+<BasicBoolTerm Intrnl_Id="360">
+<LocList>
+<Loc EndOffset="1297" SrcFileId="5" StartOffset="1286"/>
+</LocList>
+</BasicBoolTerm>
+<LocList>
+<Loc EndOffset="1286" SrcFileId="5" StartOffset="1285"/>
+</LocList>
+</OpTerm>
+</RootTerm>
+</CondStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B14" CovItemPrefix="sticks.Game.java" Implct="true" Intrnl_Id="361">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="362">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="1217" SrcFileId="5" StartOffset="1215"/>
+<LocList>
+<Loc EndOffset="1413" SrcFileId="5" StartOffset="1215"/>
+</LocList>
+<RootTerm CovItemId="C7" CovItemPrefix="sticks.Game.java" Intrnl_Id="363">
+<BasicBoolTerm Intrnl_Id="364">
+<LocList>
+<Loc EndOffset="1237" SrcFileId="5" StartOffset="1219"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</CondStmnt>
+<BasicStmnt CovItemId="S36" CovItemPrefix="sticks.Game.java" Intrnl_Id="365">
+<LocList>
+<Loc EndOffset="1429" SrcFileId="5" StartOffset="1417"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="454" HierarchyLvlTypeId="11" Intrnl_Id="366" Name="printSticks">
+<Header>
+<Loc EndOffset="1465" SrcFileId="5" StartOffset="1439"/>
+</Header>
+<LocList>
+<Loc EndOffset="1566" SrcFileId="5" StartOffset="1439"/>
+</LocList>
+<StmntSeq Intrnl_Id="367">
+<LocList>
+<Loc EndOffset="1562" SrcFileId="5" StartOffset="1471"/>
+</LocList>
+<BasicStmnt CovItemId="S37" CovItemPrefix="sticks.Game.java" Intrnl_Id="368">
+<LocList>
+<Loc EndOffset="1562" SrcFileId="5" StartOffset="1471"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="458" HierarchyLvlTypeId="12" Intrnl_Id="369" Name="AI">
+<Header>
+<Loc EndOffset="116" SrcFileId="6" StartOffset="86"/>
+</Header>
+<LocList>
+<Loc EndOffset="646" SrcFileId="6" StartOffset="86"/>
+</LocList>
+<StmntSeq Intrnl_Id="370">
+<LocList>
+<Loc EndOffset="161" SrcFileId="6" StartOffset="124"/>
+<Loc EndOffset="184" SrcFileId="6" StartOffset="164"/>
+</LocList>
+<BasicStmnt CovItemId="S1" CovItemPrefix="sticks.AI.java" Intrnl_Id="371">
+<LocList>
+<Loc EndOffset="161" SrcFileId="6" StartOffset="124"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S2" CovItemPrefix="sticks.AI.java" Intrnl_Id="372">
+<LocList>
+<Loc EndOffset="184" SrcFileId="6" StartOffset="164"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+<HierarchyLvl HierarchyLvlId="456" HierarchyLvlTypeId="11" Intrnl_Id="373" Name="setMax">
+<Header>
+<Loc EndOffset="215" SrcFileId="6" StartOffset="190"/>
+</Header>
+<LocList>
+<Loc EndOffset="246" SrcFileId="6" StartOffset="190"/>
+</LocList>
+<StmntSeq Intrnl_Id="374">
+<LocList>
+<Loc EndOffset="242" SrcFileId="6" StartOffset="221"/>
+</LocList>
+<CondStmnt CovItemId="S3" CovItemPrefix="sticks.AI.java" Intrnl_Id="375">
+<Branch CovItemId="B1" CovItemPrefix="sticks.AI.java" Implct="false" Intrnl_Id="376">
+<Cond/>
+<LocList>
+<Loc EndOffset="242" SrcFileId="6" StartOffset="234"/>
+</LocList>
+<StmntSeq Intrnl_Id="377">
+<LocList>
+<Loc EndOffset="242" SrcFileId="6" StartOffset="234"/>
+</LocList>
+<BasicStmnt CovItemId="S4" CovItemPrefix="sticks.AI.java" Intrnl_Id="378">
+<LocList>
+<Loc EndOffset="242" SrcFileId="6" StartOffset="234"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B2" CovItemPrefix="sticks.AI.java" Implct="true" Intrnl_Id="379">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="380">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="223" SrcFileId="6" StartOffset="221"/>
+<LocList>
+<Loc EndOffset="242" SrcFileId="6" StartOffset="221"/>
+</LocList>
+<RootTerm CovItemId="C1" CovItemPrefix="sticks.AI.java" Intrnl_Id="381">
+<BasicBoolTerm Intrnl_Id="382">
+<LocList>
+<Loc EndOffset="228" SrcFileId="6" StartOffset="225"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</CondStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="457" HierarchyLvlTypeId="11" Intrnl_Id="383" Name="draw">
+<Header>
+<Loc EndOffset="281" SrcFileId="6" StartOffset="252"/>
+</Header>
+<LocList>
+<Loc EndOffset="643" SrcFileId="6" StartOffset="252"/>
+</LocList>
+<StmntSeq Intrnl_Id="384">
+<LocList>
+<Loc EndOffset="639" SrcFileId="6" StartOffset="287"/>
+</LocList>
+<CondStmnt CovItemId="S5" CovItemPrefix="sticks.AI.java" Intrnl_Id="385">
+<Branch CovItemId="B3" CovItemPrefix="sticks.AI.java" Implct="false" Intrnl_Id="386">
+<Cond/>
+<LocList>
+<Loc EndOffset="360" SrcFileId="6" StartOffset="301"/>
+</LocList>
+<StmntSeq Intrnl_Id="387">
+<LocList>
+<Loc EndOffset="341" SrcFileId="6" StartOffset="307"/>
+<Loc EndOffset="355" SrcFileId="6" StartOffset="346"/>
+</LocList>
+<BasicStmnt CovItemId="S6" CovItemPrefix="sticks.AI.java" Intrnl_Id="388">
+<LocList>
+<Loc EndOffset="341" SrcFileId="6" StartOffset="307"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S7" CovItemPrefix="sticks.AI.java" Intrnl_Id="389">
+<LocList>
+<Loc EndOffset="355" SrcFileId="6" StartOffset="346"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B4" CovItemPrefix="sticks.AI.java" Implct="false" Intrnl_Id="390">
+<Cond>
+<Loc EndOffset="368" SrcFileId="6" StartOffset="364"/>
+</Cond>
+<LocList>
+<Loc EndOffset="639" SrcFileId="6" StartOffset="369"/>
+</LocList>
+<StmntSeq Intrnl_Id="391">
+<LocList>
+<Loc EndOffset="639" SrcFileId="6" StartOffset="369"/>
+</LocList>
+<CondStmnt CovItemId="S8" CovItemPrefix="sticks.AI.java" Intrnl_Id="392">
+<Branch CovItemId="B5" CovItemPrefix="sticks.AI.java" Implct="false" Intrnl_Id="393">
+<Cond/>
+<LocList>
+<Loc EndOffset="442" SrcFileId="6" StartOffset="383"/>
+</LocList>
+<StmntSeq Intrnl_Id="394">
+<LocList>
+<Loc EndOffset="423" SrcFileId="6" StartOffset="389"/>
+<Loc EndOffset="437" SrcFileId="6" StartOffset="428"/>
+</LocList>
+<BasicStmnt CovItemId="S9" CovItemPrefix="sticks.AI.java" Intrnl_Id="395">
+<LocList>
+<Loc EndOffset="423" SrcFileId="6" StartOffset="389"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S10" CovItemPrefix="sticks.AI.java" Intrnl_Id="396">
+<LocList>
+<Loc EndOffset="437" SrcFileId="6" StartOffset="428"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B6" CovItemPrefix="sticks.AI.java" Implct="false" Intrnl_Id="397">
+<Cond>
+<Loc EndOffset="450" SrcFileId="6" StartOffset="446"/>
+</Cond>
+<LocList>
+<Loc EndOffset="639" SrcFileId="6" StartOffset="451"/>
+</LocList>
+<StmntSeq Intrnl_Id="398">
+<LocList>
+<Loc EndOffset="639" SrcFileId="6" StartOffset="451"/>
+</LocList>
+<CondStmnt CovItemId="S11" CovItemPrefix="sticks.AI.java" Intrnl_Id="399">
+<Branch CovItemId="B7" CovItemPrefix="sticks.AI.java" Implct="false" Intrnl_Id="400">
+<Cond/>
+<LocList>
+<Loc EndOffset="524" SrcFileId="6" StartOffset="465"/>
+</LocList>
+<StmntSeq Intrnl_Id="401">
+<LocList>
+<Loc EndOffset="505" SrcFileId="6" StartOffset="471"/>
+<Loc EndOffset="519" SrcFileId="6" StartOffset="510"/>
+</LocList>
+<BasicStmnt CovItemId="S12" CovItemPrefix="sticks.AI.java" Intrnl_Id="402">
+<LocList>
+<Loc EndOffset="505" SrcFileId="6" StartOffset="471"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S13" CovItemPrefix="sticks.AI.java" Intrnl_Id="403">
+<LocList>
+<Loc EndOffset="519" SrcFileId="6" StartOffset="510"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B8" CovItemPrefix="sticks.AI.java" Implct="false" Intrnl_Id="404">
+<Cond>
+<Loc EndOffset="532" SrcFileId="6" StartOffset="528"/>
+</Cond>
+<LocList>
+<Loc EndOffset="639" SrcFileId="6" StartOffset="533"/>
+</LocList>
+<StmntSeq Intrnl_Id="405">
+<LocList>
+<Loc EndOffset="572" SrcFileId="6" StartOffset="539"/>
+<Loc EndOffset="617" SrcFileId="6" StartOffset="577"/>
+<Loc EndOffset="634" SrcFileId="6" StartOffset="622"/>
+</LocList>
+<BasicStmnt CovItemId="S14" CovItemPrefix="sticks.AI.java" Intrnl_Id="406">
+<LocList>
+<Loc EndOffset="572" SrcFileId="6" StartOffset="539"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S15" CovItemPrefix="sticks.AI.java" Intrnl_Id="407">
+<LocList>
+<Loc EndOffset="617" SrcFileId="6" StartOffset="577"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S16" CovItemPrefix="sticks.AI.java" Intrnl_Id="408">
+<LocList>
+<Loc EndOffset="634" SrcFileId="6" StartOffset="622"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="453" SrcFileId="6" StartOffset="451"/>
+<LocList>
+<Loc EndOffset="639" SrcFileId="6" StartOffset="451"/>
+</LocList>
+<RootTerm CovItemId="C4" CovItemPrefix="sticks.AI.java" Intrnl_Id="409">
+<BasicBoolTerm Intrnl_Id="410">
+<LocList>
+<Loc EndOffset="463" SrcFileId="6" StartOffset="455"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</CondStmnt>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="371" SrcFileId="6" StartOffset="369"/>
+<LocList>
+<Loc EndOffset="639" SrcFileId="6" StartOffset="369"/>
+</LocList>
+<RootTerm CovItemId="C3" CovItemPrefix="sticks.AI.java" Intrnl_Id="411">
+<BasicBoolTerm Intrnl_Id="412">
+<LocList>
+<Loc EndOffset="381" SrcFileId="6" StartOffset="373"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</CondStmnt>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="289" SrcFileId="6" StartOffset="287"/>
+<LocList>
+<Loc EndOffset="639" SrcFileId="6" StartOffset="287"/>
+</LocList>
+<RootTerm CovItemId="C2" CovItemPrefix="sticks.AI.java" Intrnl_Id="413">
+<BasicBoolTerm Intrnl_Id="414">
+<LocList>
+<Loc EndOffset="299" SrcFileId="6" StartOffset="291"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</CondStmnt>
+</StmntSeq>
+</HierarchyLvl>
+</HierarchyLvl>
+</HierarchyLvl>
+</HierarchyLvl>
+</MASTRoot>
+</TestSessionContainer>
